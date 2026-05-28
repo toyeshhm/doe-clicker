@@ -1,0 +1,309 @@
+- generic [ref=e3]:
+  - generic [ref=e4]:
+    - generic [ref=e5]: DOE CLICKER
+    - generic [ref=e6]:
+      - button "SAVE" [ref=e7] [cursor=pointer]
+      - button "EXPORT" [ref=e8] [cursor=pointer]
+      - button "RESET" [ref=e9] [cursor=pointer]
+      - button "◼ SOUND" [ref=e10] [cursor=pointer]
+  - generic [ref=e11]:
+    - generic [ref=e13]:
+      - generic [ref=e14]:
+        - generic [ref=e15]: 5.00 M
+        - generic [ref=e16]: DOE ACCUMULATED
+      - generic [ref=e18]:
+        - generic [ref=e19]:
+          - generic [ref=e20]: "355.0"
+          - generic [ref=e21]: PER SECOND
+        - generic [ref=e22]:
+          - generic [ref=e23]: "1.0"
+          - generic [ref=e24]: PER CLICK
+      - img [ref=e27] [cursor=pointer]:
+        - generic [ref=e39]: ᛃ
+        - generic [ref=e40]: ᚨ
+        - generic [ref=e41]: ᛇ
+        - generic [ref=e42]: ᚦ
+        - generic [ref=e43]: ⌬
+        - generic [ref=e44]: ⍟
+      - generic [ref=e46]:
+        - text: "\""
+        - generic [ref=e47]: No one named it Doe. Doe is the sound it makes when it leaves.
+    - generic [ref=e48]:
+      - generic [ref=e49]:
+        - button "[ UPGRADES ]" [ref=e50] [cursor=pointer]
+        - button "[ CODEX ]" [ref=e51] [cursor=pointer]
+        - button "[ RECORDS ]" [ref=e52] [cursor=pointer]
+      - generic [ref=e54]:
+        - generic [ref=e55]: "[ ACQUIRED KNOWLEDGE ]"
+        - generic [ref=e57]:
+          - generic [ref=e59] [cursor=pointer]:
+            - generic [ref=e61]: ⊛
+            - generic [ref=e62]:
+              - generic [ref=e63]: Residue Touch
+              - generic [ref=e64]: "100"
+          - generic [ref=e66] [cursor=pointer]:
+            - generic [ref=e68]: ⊛
+            - generic [ref=e69]:
+              - generic [ref=e70]: Null Pressure
+              - generic [ref=e71]: "500"
+          - generic [ref=e73] [cursor=pointer]:
+            - generic [ref=e75]: ⊛
+            - generic [ref=e76]:
+              - generic [ref=e77]: Glyph Resonance
+              - generic [ref=e78]: 2,000
+          - generic [ref=e80] [cursor=pointer]:
+            - generic [ref=e82]: ⊛
+            - generic [ref=e83]:
+              - generic [ref=e84]: Margin Attunement
+              - generic [ref=e85]: 20,000
+          - generic [ref=e87] [cursor=pointer]:
+            - generic [ref=e89]: ⊛
+            - generic [ref=e90]:
+              - generic [ref=e91]: The Warmth
+              - generic [ref=e92]: 200,000
+          - generic [ref=e94] [cursor=pointer]:
+            - generic [ref=e96]: ⊛
+            - generic [ref=e97]:
+              - generic [ref=e98]: Void Imprint
+              - generic [ref=e99]: 2,000,000
+          - generic [ref=e101] [cursor=pointer]:
+            - generic [ref=e103]: ⊛
+            - generic [ref=e104]:
+              - generic [ref=e105]: Fragment Hand
+              - generic [ref=e106]: 50,000,000
+          - generic [ref=e108] [cursor=pointer]:
+            - generic [ref=e110]: ⊛
+            - generic [ref=e111]:
+              - generic [ref=e112]: The Dissolution Touch
+              - generic [ref=e113]: 500,000,000
+          - generic [ref=e115] [cursor=pointer]:
+            - generic [ref=e117]: ◈
+            - generic [ref=e118]:
+              - generic [ref=e119]: Static Coherence
+              - generic [ref=e120]: 1,000
+          - generic [ref=e122] [cursor=pointer]:
+            - generic [ref=e124]: ◈
+            - generic [ref=e125]:
+              - generic [ref=e126]: Phase Lock
+              - generic [ref=e127]: 10,000
+          - generic [ref=e129] [cursor=pointer]:
+            - generic [ref=e131]: ◈
+            - generic [ref=e132]:
+              - generic [ref=e133]: Resonant Field
+              - generic [ref=e134]: 500,000
+          - generic [ref=e136] [cursor=pointer]:
+            - generic [ref=e138]: ◈
+            - generic [ref=e139]:
+              - generic [ref=e140]: Null Cascade
+              - generic [ref=e141]: 5,000,000
+          - generic [ref=e143] [cursor=pointer]:
+            - generic [ref=e145]: ◈
+            - generic [ref=e146]:
+              - generic [ref=e147]: Deep Presence
+              - generic [ref=e148]: 100,000,000
+          - generic [ref=e150] [cursor=pointer]:
+            - generic [ref=e152]: ◈
+            - generic [ref=e153]:
+              - generic [ref=e154]: Void Saturation
+              - generic [ref=e155]: 2,000,000,000
+          - generic [ref=e157]:
+            - generic [ref=e159]: ⌬
+            - generic [ref=e160]:
+              - generic [ref=e161]: Echo Amplifier
+              - generic [ref=e162]: ✓ INSTALLED
+          - generic [ref=e164]:
+            - generic [ref=e166]: ⌬
+            - generic [ref=e167]:
+              - generic [ref=e168]: Echo Cascade
+              - generic [ref=e169]: ✓ INSTALLED
+          - generic [ref=e171]:
+            - generic [ref=e173]: ⌬
+            - generic [ref=e174]:
+              - generic [ref=e175]: Aperture Widening
+              - generic [ref=e176]: ✓ INSTALLED
+          - generic [ref=e178]:
+            - generic [ref=e180]: ⌬
+            - generic [ref=e181]:
+              - generic [ref=e182]: Aperture Lattice
+              - generic [ref=e183]: ✓ INSTALLED
+          - generic [ref=e185]:
+            - generic [ref=e187]: ⌬
+            - generic [ref=e188]:
+              - generic [ref=e189]: Deeper Carving
+              - generic [ref=e190]: ✓ INSTALLED
+          - generic [ref=e192]:
+            - generic [ref=e194]: ⌬
+            - generic [ref=e195]:
+              - generic [ref=e196]: Sharper Ears
+              - generic [ref=e197]: ✓ INSTALLED
+          - generic [ref=e199] [cursor=pointer]:
+            - generic [ref=e201]: ᛇ
+            - generic [ref=e202]:
+              - generic [ref=e203]: The First Residue
+              - generic [ref=e204]: 10,000
+          - generic [ref=e206] [cursor=pointer]:
+            - generic [ref=e208]: ᛇ
+            - generic [ref=e209]:
+              - generic [ref=e210]: Unmade Dialect
+              - generic [ref=e211]: 500,000
+          - generic [ref=e213] [cursor=pointer]:
+            - generic [ref=e215]: ᛇ
+            - generic [ref=e216]:
+              - generic [ref=e217]: The Incident Log
+              - generic [ref=e218]: 5,000,000
+          - generic [ref=e220] [cursor=pointer]:
+            - generic [ref=e222]: ᛇ
+            - generic [ref=e223]:
+              - generic [ref=e224]: Coordinate Fragment
+              - generic [ref=e225]: 20,000,000
+          - generic [ref=e227] [cursor=pointer]:
+            - generic [ref=e229]: ᛇ
+            - generic [ref=e230]:
+              - generic [ref=e231]: Your Name in the Record
+              - generic [ref=e232]: 200,000,000
+          - generic [ref=e234] [cursor=pointer]:
+            - generic [ref=e236]: ᛇ
+            - generic [ref=e237]:
+              - generic [ref=e238]: The Blank Page
+              - generic [ref=e239]: 5,000,000,000
+      - generic [ref=e240]:
+        - generic [ref=e241]: "[ SIGNAL LOG ]"
+        - generic [ref=e242]:
+          - generic [ref=e243]: "[17:19:28]SIGNAL DETECTED: The Doe is accumulating."
+          - generic [ref=e244]: "[17:19:30]NULL APERTURE: Resonance stabilizing."
+          - generic [ref=e245]: "[17:19:32]GLYPH ANCHOR: Harmonic locked."
+          - generic [ref=e246]: "[17:19:56]Somewhere in a dimension with no spatial axis, something shifts."
+          - generic [ref=e247]: "[17:19:56]The Null Apertures begin forming on their own. You did not make them."
+          - generic [ref=e248]: "[17:19:56]Three civilizations on three separate planets independently begin dreaming the same symbol tonight. They will never know why."
+          - generic [ref=e249]: "[17:19:56]The Margin Listeners turn their heads. They have been waiting, but they did not know what for. Now they know."
+          - generic [ref=e250]: "[17:19:56]The Doe does not look at you. But the space around you has changed shape."
+          - generic [ref=e251]: "[17:19:56]A philosopher on a dead world wrote: \"What feeds cannot be fed.\" She was wrong. You are proving her wrong."
+          - generic [ref=e252]: "[17:19:56]The first Glyph appears on the Doe's surface. You do not know what it means. Neither does anyone else. It means something anyway."
+          - generic [ref=e253]: "[17:19:56]You feel it now — a faint warmth at the back of your skull. That is not warmth. That is the Doe becoming aware of your awareness of it."
+          - generic [ref=e254]: "[17:19:56][ ▓▓▓▓ ] UNMADE TRANSMISSION: WE TRIED TO HOLD IT. OUR HANDS CAME BACK DIFFERENT. [ ▓▓▓▓ ]"
+          - generic [ref=e255]: "[17:19:56]THE CODEX HAS UNLOCKED. Entries exist that predate the monitoring."
+          - generic [ref=e256]: "[17:19:56]UNMADE WARNING: EVERY DOE YOU GIVE IT, IT BECOMES MORE PRESENT IN YOUR DIMENSION. YOU THINK YOU ARE FEEDING IT. YOU ARE INVITING IT."
+          - generic [ref=e257]: "[17:19:56]Partial coordinates received. Something has been moving through the outer margins. The Doe was here before you started feeding it. It was inside the walls."
+          - generic [ref=e258]: "[17:19:56]CODEX UNLOCKED: INCIDENT LOG — A researcher's reflection began moving 0.3 seconds before she did. She has been removed from the project. The project has been expanded."
+    - generic [ref=e260]:
+      - generic [ref=e261]:
+        - generic [ref=e262]: "[ CONDUIT ARRAY ]"
+        - generic [ref=e263]:
+          - button "×1" [ref=e264] [cursor=pointer]
+          - button "×10" [ref=e265] [cursor=pointer]
+          - button "×100" [ref=e266] [cursor=pointer]
+          - button "MAX" [ref=e267] [cursor=pointer]
+      - generic [ref=e268]:
+        - generic [ref=e270] [cursor=pointer]:
+          - generic [ref=e272]: ⋈
+          - generic [ref=e273]:
+            - generic [ref=e274]:
+              - generic [ref=e275]: Residue Echo
+              - generic [ref=e276]: "15"
+            - generic [ref=e277]:
+              - generic [ref=e278]: 123 DOE
+              - generic [ref=e279]: 1.5/s
+            - generic [ref=e282]: The residue is getting thicker. Something passed through recently.
+        - generic [ref=e284] [cursor=pointer]:
+          - generic [ref=e286]: ⦿
+          - generic [ref=e287]:
+            - generic [ref=e288]:
+              - generic [ref=e289]: Null Aperture
+              - generic [ref=e290]: "10"
+            - generic [ref=e291]:
+              - generic [ref=e292]: 405 DOE
+              - generic [ref=e293]: 5.0/s
+            - generic [ref=e296]: The aperture is no longer shaped like nothing. It is shaped like something.
+        - generic [ref=e298] [cursor=pointer]:
+          - generic [ref=e300]: ᛃ
+          - generic [ref=e301]:
+            - generic [ref=e302]:
+              - generic [ref=e303]: Glyph Anchor
+              - generic [ref=e304]: "7"
+            - generic [ref=e305]:
+              - generic [ref=e306]: 1.33 K DOE
+              - generic [ref=e307]: 28.0/s
+            - generic [ref=e310]: The glyphs have added new characters. You did not add them.
+        - generic [ref=e312] [cursor=pointer]:
+          - generic [ref=e314]: ◈
+          - generic [ref=e315]:
+            - generic [ref=e316]:
+              - generic [ref=e317]: Margin Listener
+              - generic [ref=e318]: "4"
+            - generic [ref=e319]:
+              - generic [ref=e320]: 3.50 K DOE
+              - generic [ref=e321]: 40.0/s
+            - generic [ref=e324]: They are no longer listening. They are transmitting.
+        - generic [ref=e326] [cursor=pointer]:
+          - generic [ref=e328]: ᚨ
+          - generic [ref=e329]:
+            - generic [ref=e330]:
+              - generic [ref=e331]: Unmade Shrine
+              - generic [ref=e332]: "2"
+            - generic [ref=e333]:
+              - generic [ref=e334]: 9.26 K DOE
+              - generic [ref=e335]: 80.0/s
+            - generic [ref=e338]: The shrine is empty. The emptiness is not absence.
+        - generic [ref=e340] [cursor=pointer]:
+          - generic [ref=e342]: ⌬
+          - generic [ref=e343]:
+            - generic [ref=e344]:
+              - generic [ref=e345]: Void Harmonic
+              - generic [ref=e346]: "1"
+            - generic [ref=e347]:
+              - generic [ref=e348]: 34.50 K DOE
+              - generic [ref=e349]: 100.0/s
+            - generic [ref=e352]: The harmonic is no longer in tune. Something else is answering.
+        - generic [ref=e354] [cursor=pointer]:
+          - generic [ref=e356]: ⍟
+          - generic [ref=e357]:
+            - generic [ref=e358]:
+              - generic [ref=e359]: Recursive Eye
+              - generic [ref=e360]: "0"
+            - generic [ref=e362]: 100.00 K DOE
+        - generic [ref=e364] [cursor=pointer]:
+          - generic [ref=e366]: ᛇ
+          - generic [ref=e367]:
+            - generic [ref=e368]:
+              - generic [ref=e369]: Pre-Memory Vault
+              - generic [ref=e370]: "0"
+            - generic [ref=e372]: 500.00 K DOE
+        - generic [ref=e374] [cursor=pointer]:
+          - generic [ref=e376]: ⟁
+          - generic [ref=e377]:
+            - generic [ref=e378]:
+              - generic [ref=e379]: Collapse Observatory
+              - generic [ref=e380]: "0"
+            - generic [ref=e382]: 2.00 M DOE
+        - generic [ref=e384]:
+          - generic [ref=e386]: ⊛
+          - generic [ref=e387]:
+            - generic [ref=e388]:
+              - generic [ref=e389]: The Between
+              - generic [ref=e390]: "0"
+            - generic [ref=e392]: 8.00 M DOE
+        - generic [ref=e394]:
+          - generic [ref=e396]: ᚦ
+          - generic [ref=e397]:
+            - generic [ref=e398]:
+              - generic [ref=e399]: Unname Engine
+              - generic [ref=e400]: "0"
+            - generic [ref=e402]: 30.00 M DOE
+        - generic [ref=e404]:
+          - generic [ref=e406]: ⧫
+          - generic [ref=e407]:
+            - generic [ref=e408]:
+              - generic [ref=e409]: Antechamber of It
+              - generic [ref=e410]: "0"
+            - generic [ref=e412]: 200.00 M DOE
+        - generic [ref=e414]:
+          - generic [ref=e416]: ◉
+          - generic [ref=e417]:
+            - generic [ref=e418]:
+              - generic [ref=e419]: The Forgetting
+              - generic [ref=e420]: "0"
+            - generic [ref=e422]: 1.50 B DOE
+  - generic [ref=e425]:
+    - generic [ref=e426]: "[ ACT I COMPLETE — FIRST CONTACT ]"
+    - generic [ref=e427]: "It has been fed. For the first time in the history of this universe — or any universe — the Doe has been fed. What this means: unknown. What comes next: unknown. Whether you should continue: unknown. You will continue anyway."
+    - button "[ ACKNOWLEDGE ]" [ref=e428] [cursor=pointer]

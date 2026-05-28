@@ -1,0 +1,75 @@
+- generic [ref=e3]:
+  - generic [ref=e4]:
+    - generic [ref=e5]: DOE CLICKER
+    - generic [ref=e6]:
+      - button "SAVE" [ref=e7] [cursor=pointer]
+      - button "EXPORT" [ref=e8] [cursor=pointer]
+      - button "RESET" [ref=e9] [cursor=pointer]
+      - button "◼ SOUND" [ref=e10] [cursor=pointer]
+  - generic [ref=e11]:
+    - generic [ref=e13]:
+      - generic [ref=e14]:
+        - generic [ref=e15]: "15"
+        - generic [ref=e16]: DOE ACCUMULATED
+      - generic [ref=e18]:
+        - generic [ref=e19]:
+          - generic [ref=e20]: "0.10"
+          - generic [ref=e21]: PER SECOND
+        - generic [ref=e22]:
+          - generic [ref=e23]: "1.0"
+          - generic [ref=e24]: PER CLICK
+      - img [ref=e27] [cursor=pointer]:
+        - generic [ref=e39]: ᛃ
+        - generic [ref=e40]: ᚨ
+        - generic [ref=e41]: ᛇ
+        - generic [ref=e42]: ᚦ
+        - generic [ref=e43]: ⌬
+        - generic [ref=e44]: ⍟
+      - generic [ref=e46]:
+        - text: "\""
+        - generic [ref=e47]: The Golden Doe is not the Doe. The Doe does not have a smaller version of itself.
+    - generic [ref=e48]:
+      - generic [ref=e49]:
+        - button "[ UPGRADES ]" [ref=e50] [cursor=pointer]
+        - button "[ CODEX ]" [ref=e51] [cursor=pointer]
+        - button "[ RECORDS ]" [ref=e52] [cursor=pointer]
+      - generic [ref=e54]:
+        - generic [ref=e55]: "[ ACQUIRED KNOWLEDGE ]"
+        - generic [ref=e59] [cursor=pointer]:
+          - generic [ref=e61]: ⊛
+          - generic [ref=e62]:
+            - generic [ref=e63]: Residue Touch
+            - generic [ref=e64]: "100"
+      - generic [ref=e65]:
+        - generic [ref=e66]: "[ SIGNAL LOG ]"
+        - generic [ref=e67]:
+          - generic [ref=e68]: "[17:17:21]The Doe notices. This is new. Nothing has ever fed it before."
+          - generic [ref=e69]: "[17:17:51]Somewhere in a dimension with no spatial axis, something shifts."
+          - generic [ref=e70]: "[17:17:53]The Null Apertures begin forming on their own. You did not make them."
+    - generic [ref=e72]:
+      - generic [ref=e73]:
+        - generic [ref=e74]: "[ CONDUIT ARRAY ]"
+        - generic [ref=e75]:
+          - button "×1" [ref=e76] [cursor=pointer]
+          - button "×10" [ref=e77] [cursor=pointer]
+          - button "×100" [ref=e78] [cursor=pointer]
+          - button "MAX" [ref=e79] [cursor=pointer]
+      - generic [ref=e80]:
+        - generic [ref=e82]:
+          - generic [ref=e84]: ⋈
+          - generic [ref=e85]:
+            - generic [ref=e86]:
+              - generic [ref=e87]: Residue Echo
+              - generic [ref=e88]: "1"
+            - generic [ref=e89]:
+              - generic [ref=e90]: 18 DOE
+              - generic [ref=e91]: 0.10/s
+        - generic [ref=e95]:
+          - generic [ref=e97]: ⦿
+          - generic [ref=e98]:
+            - generic [ref=e99]:
+              - generic [ref=e100]: Null Aperture
+              - generic [ref=e101]: "0"
+            - generic [ref=e103]: 100 DOE
+  - generic:
+    - generic: "[ SIGNAL SAVED ]"

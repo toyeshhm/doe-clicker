@@ -250,11 +250,12 @@ body::after {
   border: 1px solid rgba(0,255,65,0.38);
   background:
     linear-gradient(160deg,
-      rgba(0, 16, 8, 0.97) 0%,
-      rgba(2, 5, 14, 0.98) 45%,
-      rgba(6, 2, 16, 0.96) 100%);
+      rgba(0, 14, 7, 0.84) 0%,
+      rgba(2, 4, 14, 0.86) 45%,
+      rgba(6, 2, 18, 0.82) 100%);
   position: relative;
   animation: panel-aurora 14s ease-in-out infinite;
+  backdrop-filter: blur(2px);
 }
 
 .panel-header {

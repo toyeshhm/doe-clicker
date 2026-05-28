@@ -20,7 +20,7 @@ type Tab = 'upgrades' | 'codex' | 'stats';
 /* Animated nebula color layer — blobs float and breathe behind all UI */
 function NebulaLayer() {
   return (
-    <div aria-hidden style={{ position: 'fixed', inset: 0, pointerEvents: 'none', zIndex: 0, overflow: 'hidden' }}>
+    <div aria-hidden style={{ position: 'fixed', inset: 0, pointerEvents: 'none', zIndex: 2, overflow: 'hidden' }}>
       {/* Magenta — top right */}
       <div className="nebula-blob" style={{
         width: 720, height: 520,

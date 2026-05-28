@@ -12,6 +12,7 @@ export default function ConduitsPanel() {
   const [expanded, setExpanded] = useState<string | null>(null);
   const { state, dispatch, addToast } = useGame();
   const isAct3Plus = state.totalDoeEver >= 1e7;
+  const totalDps = state.doePerSecond;
 
   const handleBuy = (c: Conduit) => {
     const owned = state.conduits[c.id] || 0;
@@ -19,7 +20,7 @@ export default function ConduitsPanel() {
     if (bulkMode === 'max') {
       qty = maxAffordable(c.baseCost, owned, state.doe);
     } else {
-      qty = bulkMode;
+      qty = bulkMode as number;
     }
     if (qty === 0) return;
     const cost = conduitCostBulk(c.baseCost, owned, qty);
@@ -38,7 +39,9 @@ export default function ConduitsPanel() {
             <button
               key={String(m)}
               className="btn-terminal text-xs px-1.5 py-0.5"
-              style={{ background: bulkMode === m ? 'var(--phosphor)' : undefined, color: bulkMode === m ? '#000' : undefined }}
+              style={bulkMode === m
+                ? { background: 'var(--phosphor)', color: '#000', textShadow: 'none', boxShadow: '0 0 10px rgba(0,255,65,0.4)' }
+                : {}}
               onClick={() => setBulkMode(m)}
             >
               {m === 'max' ? 'MAX' : `×${m}`}
@@ -46,6 +49,7 @@ export default function ConduitsPanel() {
           ))}
         </div>
       </div>
+
       <div className="flex-1 overflow-y-auto">
         {CONDUITS.map(c => {
           const owned = state.conduits[c.id] || 0;
@@ -58,40 +62,72 @@ export default function ConduitsPanel() {
           const cost = conduitCostBulk(c.baseCost, owned, qty);
           const affordable = state.doe >= cost && (bulkMode !== 'max' || maxAffordable(c.baseCost, owned, state.doe) > 0);
           const unlocked = state.totalDoeEver >= c.baseCost / 10 || owned > 0;
-
           if (!unlocked) return null;
 
-          const cls = ['conduit-row p-2 cursor-pointer', affordable ? 'affordable' : 'unaffordable'].join(' ');
+          const conduitDps = c.baseDps * owned;
+          const dpsPercent = totalDps > 0 && owned > 0 ? Math.min(100, (conduitDps / totalDps) * 100) : 0;
           const isExpanded = expanded === c.id;
           const showCorrupted = isAct3Plus && owned > 0 && c.corruptedDesc;
 
           return (
             <div key={c.id}>
-              <div className={cls} onClick={() => { if (affordable) handleBuy(c); setExpanded(isExpanded ? null : c.id); }}>
-                <div className="flex items-center gap-2">
-                  <span className="text-amber vt323 text-2xl w-7 text-center flex-shrink-0">{c.glyph}</span>
-                  <div className="flex-1 min-w-0">
-                    <div className="flex items-center justify-between">
-                      <span className="text-phosphor text-xs">{c.name}</span>
-                      <span className="text-amber vt323 text-base ml-2">{owned}</span>
-                    </div>
-                    <div className="flex items-center justify-between">
-                      <span className="text-pale text-xs opacity-70">{formatDoe(cost)} DOE</span>
-                      <span className="text-phosphor text-xs opacity-60">{formatDps(c.baseDps * (owned || 1))}/s</span>
-                    </div>
-                    {showCorrupted && (
-                      <div className="text-crimson text-xs opacity-60 mt-0.5" style={{ fontSize: 10 }}>
-                        {c.corruptedDesc}
-                      </div>
+              <div
+                className={`conduit-row flex items-stretch gap-0 ${affordable ? 'affordable' : 'unaffordable'}`}
+                onClick={() => {
+                  if (affordable) handleBuy(c);
+                  setExpanded(isExpanded ? null : c.id);
+                }}
+              >
+                {/* Icon box */}
+                <div className="conduit-icon-box">
+                  <span className="vt323 text-amber" style={{ fontSize: 22 }}>{c.glyph}</span>
+                </div>
+
+                {/* Content */}
+                <div className="flex-1 min-w-0 px-2 py-1.5">
+                  <div className="flex items-center justify-between gap-1">
+                    <span className="text-phosphor text-xs truncate" style={{ textShadow: affordable ? '0 0 6px rgba(0,255,65,0.3)' : 'none' }}>
+                      {c.name}
+                    </span>
+                    <div className="conduit-count-badge">{owned}</div>
+                  </div>
+
+                  <div className="flex items-center justify-between mt-0.5">
+                    <span className="text-xs" style={{ color: affordable ? 'var(--amber-bright)' : 'var(--pale-void)', opacity: affordable ? 0.9 : 0.5, fontSize: 10 }}>
+                      {formatDoe(cost)} DOE
+                    </span>
+                    {owned > 0 && (
+                      <span className="text-xs" style={{ color: 'var(--cyan)', opacity: 0.65, fontSize: 10 }}>
+                        {formatDps(conduitDps)}/s
+                      </span>
                     )}
                   </div>
+
+                  {/* DPS bar */}
+                  {owned > 0 && (
+                    <div className="conduit-dps-bar-track">
+                      <div className="conduit-dps-bar-fill" style={{ width: `${dpsPercent}%` }} />
+                    </div>
+                  )}
+
+                  {showCorrupted && (
+                    <div className="text-crimson mt-0.5" style={{ fontSize: 9, opacity: 0.7 }}>
+                      {c.corruptedDesc}
+                    </div>
+                  )}
                 </div>
               </div>
+
+              {/* Expanded detail */}
               {isExpanded && (
-                <div className="border-l border-b border-phosphor border-opacity-20 p-2 text-xs text-pale opacity-80 bg-black">
-                  <div className="mb-1 italic">{c.description}</div>
-                  <div className="text-phosphor opacity-60">Base DPS: {c.baseDps}/s × {owned} = {formatDps(c.baseDps * owned)}/s</div>
-                  <div className="flex gap-2 mt-2">
+                <div style={{ background: 'rgba(0,255,65,0.03)', borderLeft: '3px solid rgba(0,255,65,0.2)', padding: '8px 12px 8px 10px', marginBottom: 1 }}>
+                  <div className="text-pale italic text-xs mb-2 leading-relaxed" style={{ opacity: 0.75, fontSize: 10 }}>
+                    {c.description}
+                  </div>
+                  <div className="text-xs mb-2" style={{ color: 'var(--cyan)', opacity: 0.6, fontSize: 10 }}>
+                    Base {c.baseDps}/s × {owned} = {formatDps(c.baseDps * owned)}/s
+                  </div>
+                  <div className="flex gap-2">
                     {([1, 10, 100] as number[]).map(q => {
                       const qcost = conduitCostBulk(c.baseCost, owned, q);
                       const canAfford = state.doe >= qcost;
@@ -100,6 +136,7 @@ export default function ConduitsPanel() {
                           key={q}
                           className="btn-terminal text-xs"
                           disabled={!canAfford}
+                          style={{ fontSize: 10, padding: '2px 6px' }}
                           onClick={e => {
                             e.stopPropagation();
                             if (!canAfford) return;
@@ -107,7 +144,7 @@ export default function ConduitsPanel() {
                             playPurchase();
                           }}
                         >
-                          ×{q} ({formatDoe(qcost)})
+                          ×{q} <span style={{ opacity: 0.7 }}>({formatDoe(qcost)})</span>
                         </button>
                       );
                     })}

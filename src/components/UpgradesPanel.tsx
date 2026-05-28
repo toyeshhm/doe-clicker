@@ -8,14 +8,20 @@ const TYPE_ICONS: Record<string, string> = {
   click: '⊛', all: '◈', building: '⌬', lore: 'ᛇ',
 };
 
+const TYPE_ICON_COLORS: Record<string, string> = {
+  click: 'var(--cyan)',
+  all: 'var(--amber-bright)',
+  building: 'var(--phosphor)',
+  lore: '#bb44ff',
+};
+
 export default function UpgradesPanel() {
   const { state, dispatch, addToast } = useGame();
 
   const visibleUpgrades = UPGRADES.filter(u => {
     if (state.upgrades.has(u.id)) return true;
     if (u.requires && (state.conduits[u.requires.conduit] || 0) < u.requires.count) return false;
-    const within10x = state.doe >= u.cost / 10;
-    return within10x || state.totalDoeEver >= u.cost / 10;
+    return state.doe >= u.cost / 10 || state.totalDoeEver >= u.cost / 10;
   });
 
   const handleBuy = (u: UpgradeDef) => {
@@ -34,7 +40,7 @@ export default function UpgradesPanel() {
             <UpgradeTile key={u.id} upgrade={u} onBuy={handleBuy} />
           ))}
           {visibleUpgrades.length === 0 && (
-            <div className="col-span-2 text-center text-pale text-xs py-8 opacity-50">
+            <div className="col-span-2 text-center text-pale text-xs py-8 opacity-40">
               Feed the Doe to reveal upgrades.
             </div>
           )}
@@ -49,32 +55,41 @@ function UpgradeTile({ upgrade: u, onBuy }: { upgrade: UpgradeDef; onBuy: (u: Up
   const [showTooltip, setShowTooltip] = useState(false);
   const purchased = state.upgrades.has(u.id);
   const affordable = state.doe >= u.cost;
+  const iconColor = TYPE_ICON_COLORS[u.type] || 'var(--phosphor)';
 
   const cls = [
-    'upgrade-tile p-1.5 text-left',
+    'upgrade-tile',
+    `type-${u.type}`,
     purchased ? 'purchased' : '',
-    !purchased && !affordable ? 'opacity-50' : '',
+    !purchased && !affordable ? 'opacity-45' : '',
   ].filter(Boolean).join(' ');
 
   return (
     <div
       className={cls}
+      style={{ padding: '7px 8px', minHeight: 54, position: 'relative' }}
       onClick={() => !purchased && onBuy(u)}
       onMouseEnter={() => setShowTooltip(true)}
       onMouseLeave={() => setShowTooltip(false)}
-      style={{ position: 'relative', minHeight: 56 }}
     >
-      {/* Icon */}
       <div className="flex items-start gap-1.5">
-        <div className="text-amber vt323 text-xl leading-none mt-0.5 w-6 text-center flex-shrink-0">
-          {TYPE_ICONS[u.type] || '◈'}
+        {/* Icon box */}
+        <div className="upgrade-icon-box flex-shrink-0">
+          <span style={{ fontSize: 15, color: iconColor, lineHeight: 1 }}>
+            {TYPE_ICONS[u.type] || '◈'}
+          </span>
         </div>
+
+        {/* Text */}
         <div className="flex-1 min-w-0">
-          <div className="text-phosphor text-xs leading-tight truncate">
-            {purchased ? <s className="opacity-60">{u.name}</s> : u.name}
+          <div className="text-xs leading-tight" style={{ color: purchased ? 'var(--pale-void)' : 'var(--phosphor)', fontSize: 10.5 }}>
+            {purchased
+              ? <s style={{ opacity: 0.6 }}>{u.name}</s>
+              : <span style={{ textShadow: affordable ? '0 0 6px rgba(0,255,65,0.3)' : 'none' }}>{u.name}</span>
+            }
           </div>
-          <div className="text-amber text-xs" style={{ fontFamily: 'VT323', fontSize: 14 }}>
-            {purchased ? '✓ INSTALLED' : `${(u.cost).toLocaleString()} DOE`}
+          <div className="vt323 mt-0.5" style={{ fontSize: 14, color: purchased ? 'var(--phosphor)' : affordable ? 'var(--amber-bright)' : 'var(--pale-void)', opacity: purchased ? 0.7 : 1 }}>
+            {purchased ? '✓ INSTALLED' : `${(u.cost).toLocaleString()}`}
           </div>
         </div>
       </div>
@@ -82,13 +97,28 @@ function UpgradeTile({ upgrade: u, onBuy }: { upgrade: UpgradeDef; onBuy: (u: Up
       {/* Tooltip */}
       {showTooltip && (
         <div
-          className="absolute z-50 panel p-2 text-xs text-pale"
-          style={{ bottom: '100%', left: 0, width: 200, marginBottom: 4, whiteSpace: 'pre-wrap', wordBreak: 'break-word' }}
+          className="panel"
+          style={{
+            position: 'absolute',
+            bottom: '100%',
+            left: 0,
+            width: 210,
+            marginBottom: 6,
+            padding: '10px 12px',
+            zIndex: 50,
+            whiteSpace: 'pre-wrap',
+            wordBreak: 'break-word',
+            boxShadow: '0 0 30px rgba(0,0,0,0.9), 0 0 15px rgba(0,255,65,0.08)',
+          }}
         >
-          <div className="text-phosphor mb-1">{u.name}</div>
-          <div className="text-pale opacity-80">{u.description}</div>
-          {u.flavor && <div className="text-amber opacity-60 mt-1 italic">{u.flavor}</div>}
-          <div className="text-amber mt-1">{u.cost.toLocaleString()} DOE</div>
+          <div className="text-xs mb-1" style={{ color: iconColor, textShadow: `0 0 8px ${iconColor}66` }}>{u.name}</div>
+          <div className="text-pale text-xs leading-relaxed" style={{ opacity: 0.8, fontSize: 10 }}>{u.description}</div>
+          {u.flavor && (
+            <div className="text-xs italic mt-1.5" style={{ color: 'var(--amber)', opacity: 0.65, fontSize: 9.5 }}>{u.flavor}</div>
+          )}
+          <div className="mt-1.5 text-xs" style={{ color: 'var(--amber-bright)', fontSize: 10 }}>
+            {u.cost.toLocaleString()} DOE
+          </div>
         </div>
       )}
     </div>

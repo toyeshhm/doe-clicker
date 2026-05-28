@@ -17,40 +17,61 @@ import { formatDoe, formatDps } from './utils/formatting';
 
 type Tab = 'upgrades' | 'codex' | 'stats';
 
+/* Grain/noise overlay — single fixed div, z-index below UI but above body bg */
+function NoiseOverlay() {
+  return (
+    <div
+      aria-hidden
+      style={{
+        position: 'fixed',
+        inset: 0,
+        pointerEvents: 'none',
+        zIndex: 9997,
+        opacity: 0.038,
+        backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E")`,
+        backgroundRepeat: 'repeat',
+        backgroundSize: '200px 200px',
+      }}
+    />
+  );
+}
+
 function GameUI() {
   const { state, currentQuote, isGlitching } = useGame();
   const [tab, setTab] = useState<Tab>('upgrades');
 
   return (
-    <div
-      className={`flex flex-col min-h-screen ${isGlitching ? 'glitch-active' : ''} ${state.transcendenceMode ? 'transcendence-mode' : ''}`}
-      style={{ background: '#000' }}
-    >
+    <div className={`flex flex-col min-h-screen ${isGlitching ? 'glitch-active' : ''} ${state.transcendenceMode ? 'transcendence-mode' : ''}`}>
+
       <HUD />
 
-      {/* Main 3-column layout */}
+      {/* 3-column layout */}
       <div className="flex flex-1 gap-2 p-2" style={{ minHeight: 0, height: 'calc(100vh - 48px)' }}>
 
         {/* LEFT — The Doe */}
-        <div className="flex flex-col gap-2 overflow-hidden" style={{ width: 310, flexShrink: 0 }}>
+        <div className="flex flex-col gap-2 overflow-hidden" style={{ width: 316, flexShrink: 0 }}>
           <div className="panel flex flex-col items-center p-3 gap-2 flex-1">
-            {/* Doe count */}
-            <div className="text-center">
-              <div className="vt323 text-amber" style={{ fontSize: 40, lineHeight: 1.1 }}>
+
+            {/* Doe count — dramatic */}
+            <div className="text-center w-full" style={{ paddingTop: 4 }}>
+              <div className="vt323 doe-main-count" style={{ fontSize: 54, lineHeight: 1.0, color: 'var(--amber-bright)' }}>
                 {formatDoe(state.doe)}
               </div>
-              <div className="text-pale text-xs opacity-50 tracking-widest">DOE</div>
+              <div className="doe-label">DOE ACCUMULATED</div>
             </div>
 
+            {/* Divider */}
+            <div style={{ width: '100%', height: 1, background: 'linear-gradient(90deg, transparent, rgba(0,255,65,0.3) 30%, rgba(0,255,65,0.3) 70%, transparent)' }} />
+
             {/* Sub-stats */}
-            <div className="flex gap-4 text-xs">
-              <div className="text-center">
-                <div className="text-phosphor">{formatDps(state.doePerSecond)}/s</div>
-                <div className="text-pale opacity-40" style={{ fontSize: 10 }}>DOE PER SECOND</div>
+            <div className="flex gap-0 w-full">
+              <div className="flex-1 text-center" style={{ borderRight: '1px solid rgba(0,255,65,0.15)', padding: '4px 0' }}>
+                <div className="vt323 doe-stat-value" style={{ fontSize: 20, lineHeight: 1 }}>{formatDps(state.doePerSecond)}</div>
+                <div className="doe-stat-label">PER SECOND</div>
               </div>
-              <div className="text-center">
-                <div className="text-phosphor">{formatDps(state.doePerClick)}</div>
-                <div className="text-pale opacity-40" style={{ fontSize: 10 }}>PER CLICK</div>
+              <div className="flex-1 text-center" style={{ padding: '4px 0' }}>
+                <div className="vt323 doe-stat-value" style={{ fontSize: 20, lineHeight: 1 }}>{formatDps(state.doePerClick)}</div>
+                <div className="doe-stat-label">PER CLICK</div>
               </div>
             </div>
 
@@ -58,12 +79,9 @@ function GameUI() {
             <DoeClickable />
 
             {/* Lore quote */}
-            <div
-              className="w-full p-2 text-center"
-              style={{ border: '1px solid rgba(0,255,65,0.18)', background: 'rgba(0,255,65,0.02)' }}
-            >
-              <div className="text-pale text-xs italic leading-relaxed" style={{ fontSize: 10, opacity: 0.7 }}>
-                "{currentQuote}"
+            <div className="lore-quote-box w-full p-2 text-center" style={{ marginTop: 'auto' }}>
+              <div className="text-pale text-xs italic leading-relaxed" style={{ fontSize: 10, opacity: 0.7, paddingLeft: 12 }}>
+                {currentQuote}
               </div>
             </div>
           </div>
@@ -77,7 +95,7 @@ function GameUI() {
               <button
                 key={t}
                 className="btn-terminal text-xs px-3 py-1"
-                style={tab === t ? { background: 'var(--phosphor)', color: '#000' } : {}}
+                style={tab === t ? { background: 'var(--phosphor)', color: '#000', textShadow: 'none', boxShadow: '0 0 16px rgba(0,255,65,0.5)' } : {}}
                 onClick={() => setTab(t)}
               >
                 {t === 'upgrades' ? '[ UPGRADES ]' : t === 'codex' ? '[ CODEX ]' : '[ RECORDS ]'}
@@ -95,12 +113,11 @@ function GameUI() {
         </div>
 
         {/* RIGHT — Conduits */}
-        <div className="flex flex-col overflow-hidden" style={{ width: 290, flexShrink: 0 }}>
+        <div className="flex flex-col overflow-hidden" style={{ width: 292, flexShrink: 0 }}>
           <ConduitsPanel />
         </div>
       </div>
 
-      {/* Overlays */}
       <MilestoneModal />
       <GoldenDoeEvent />
       <NullSurgeEvent />
@@ -122,6 +139,7 @@ export default function App() {
 
   return (
     <GameProvider>
+      <NoiseOverlay />
       {!introDone && <IntroScreen onDone={handleIntroDone} />}
       <GameUI />
     </GameProvider>

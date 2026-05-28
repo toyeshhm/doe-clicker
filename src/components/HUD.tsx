@@ -94,14 +94,13 @@ export default function HUD() {
 
   return (
     <>
-      <div
-        className="flex items-center justify-between px-4 py-2 border-b border-phosphor border-opacity-30"
-        style={{ background: 'rgba(0,0,0,0.98)' }}
-      >
-        <div className="text-phosphor vt323 text-2xl tracking-widest">
+      <div className="hud-bar flex items-center justify-between px-4 py-2">
+        <div className="vt323 hud-title text-phosphor text-2xl">
           DOE CLICKER
           {state.ascensionCount > 0 && (
-            <span className="text-transcendent text-base ml-3">CYCLE {state.ascensionCount}</span>
+            <span className="text-transcendent text-base ml-3" style={{ textShadow: '0 0 10px rgba(255,255,255,0.6)', opacity: 0.85 }}>
+              ◈ CYCLE {state.ascensionCount}
+            </span>
           )}
         </div>
         <div className="flex items-center gap-2">

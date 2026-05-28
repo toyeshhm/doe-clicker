@@ -42,47 +42,73 @@ export default function DoeClickable() {
         onClick={handleClick}
       >
         <svg width="280" height="280" viewBox="0 0 280 280" style={{ overflow: 'visible' }}>
-          {/* Aura */}
-          <ellipse
-            cx="140" cy="140" rx="118" ry="118"
-            fill="none"
-            stroke="rgba(0,255,65,0.12)"
-            strokeWidth="40"
+          <defs>
+            <radialGradient id="voidGrad" cx="50%" cy="50%">
+              <stop offset="0%" stopColor="#000" />
+              <stop offset="60%" stopColor="#000812" />
+              <stop offset="100%" stopColor="#001508" />
+            </radialGradient>
+            <radialGradient id="auraGrad" cx="50%" cy="50%">
+              <stop offset="0%" stopColor="rgba(0,255,65,0)" />
+              <stop offset="60%" stopColor="rgba(0,255,65,0.08)" />
+              <stop offset="100%" stopColor="rgba(0,255,65,0)" />
+            </radialGradient>
+            <filter id="glow">
+              <feGaussianBlur stdDeviation="4" result="blur" />
+              <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+            </filter>
+            <filter id="outerGlow">
+              <feGaussianBlur stdDeviation="8" result="blur" />
+              <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+            </filter>
+          </defs>
+
+          {/* Outer ambient halo */}
+          <ellipse cx="140" cy="140" rx="136" ry="136"
+            fill="url(#auraGrad)"
+            style={{ animation: 'pulse-aura 4s ease-in-out infinite' }}
+          />
+
+          {/* Multi-ring aura */}
+          <ellipse cx="140" cy="140" rx="124" ry="124"
+            fill="none" stroke="rgba(0,255,65,0.18)" strokeWidth="32"
             style={{ animation: 'pulse-aura 3s ease-in-out infinite' }}
           />
-          <ellipse
-            cx="140" cy="140" rx="100" ry="100"
-            fill="none"
-            stroke="rgba(0,255,65,0.07)"
-            strokeWidth="20"
+          <ellipse cx="140" cy="140" rx="110" ry="110"
+            fill="none" stroke="rgba(0,229,255,0.06)" strokeWidth="18"
+            style={{ animation: 'pulse-aura 3s ease-in-out infinite 1s' }}
+          />
+          <ellipse cx="140" cy="140" rx="98" ry="98"
+            fill="none" stroke="rgba(0,255,65,0.1)" strokeWidth="12"
             style={{ animation: 'pulse-aura 3s ease-in-out infinite 1.5s' }}
           />
 
           {/* Main Doe void shape */}
           <path
             d="M140,22 C185,12 235,48 242,92 C250,140 236,188 203,212 C170,238 118,248 80,230 C42,212 14,172 14,132 C14,88 32,44 78,26 C98,16 118,28 140,22 Z"
-            fill="#000"
-            stroke="rgba(0,255,65,0.35)"
+            fill="url(#voidGrad)"
+            stroke="rgba(0,255,65,0.55)"
             strokeWidth="1"
+            filter="url(#glow)"
+          />
+          {/* Secondary stroke for thickness effect */}
+          <path
+            d="M140,22 C185,12 235,48 242,92 C250,140 236,188 203,212 C170,238 118,248 80,230 C42,212 14,172 14,132 C14,88 32,44 78,26 C98,16 118,28 140,22 Z"
+            fill="none"
+            stroke="rgba(0,229,255,0.12)"
+            strokeWidth="3"
           />
 
-          {/* Inner void (darker center) */}
-          <ellipse
-            cx="140" cy="140" rx="70" ry="70"
-            fill="url(#voidGrad)"
-          />
-          <defs>
-            <radialGradient id="voidGrad" cx="50%" cy="50%">
-              <stop offset="0%" stopColor="#000" />
-              <stop offset="70%" stopColor="#000510" />
-              <stop offset="100%" stopColor="#001005" />
-            </radialGradient>
-          </defs>
+          {/* Deep void center */}
+          <ellipse cx="140" cy="140" rx="72" ry="72" fill="url(#voidGrad)" />
 
           {/* Recursive inner rings */}
-          {[50, 35, 22].map((r, i) => (
+          {[54, 40, 28, 18].map((r, i) => (
             <ellipse key={i} cx="140" cy="140" rx={r} ry={r}
-              fill="none" stroke={`rgba(0,255,65,${0.08 + i * 0.04})`} strokeWidth="0.5" />
+              fill="none"
+              stroke={i % 2 === 0 ? `rgba(0,255,65,${0.1 + i * 0.025})` : `rgba(0,229,255,${0.06 + i * 0.015})`}
+              strokeWidth={i === 3 ? '1' : '0.75'}
+            />
           ))}
 
           {/* Orbiting glyphs */}
@@ -100,9 +126,9 @@ export default function DoeClickable() {
                 y={gy}
                 textAnchor="middle"
                 dominantBaseline="middle"
-                fontSize="16"
-                fill="rgba(0,255,65,0.65)"
-                style={{ fontFamily: 'Share Tech Mono' }}
+                fontSize="15"
+                fill={i % 2 === 0 ? "rgba(0,255,65,0.75)" : "rgba(0,229,255,0.55)"}
+                style={{ fontFamily: 'Share Tech Mono', filter: 'drop-shadow(0 0 4px rgba(0,255,65,0.5))' }}
                 animate={{
                   x: [
                     140 + Math.cos(rad) * 118,
@@ -128,8 +154,9 @@ export default function DoeClickable() {
                 cx={r.x} cy={r.y}
                 r="0"
                 fill="none"
-                stroke="rgba(0,255,65,0.6)"
+                stroke="rgba(0,255,65,0.7)"
                 strokeWidth="1.5"
+                filter="url(#glow)"
                 initial={{ r: 0, opacity: 0.8 }}
                 animate={{ r: 130, opacity: 0 }}
                 exit={{}}
@@ -138,12 +165,12 @@ export default function DoeClickable() {
             ))}
           </AnimatePresence>
 
-          {/* Faint color shimmer overlay */}
+          {/* Amber heartbeat ring */}
           <ellipse
-            cx="140" cy="140" rx="95" ry="95"
+            cx="140" cy="140" rx="82" ry="82"
             fill="none"
-            stroke="rgba(255,179,0,0.04)"
-            strokeWidth="2"
+            stroke="rgba(255,179,0,0.1)"
+            strokeWidth="1.5"
             style={{ animation: 'pulse-aura 5s ease-in-out infinite 2s' }}
           />
         </svg>

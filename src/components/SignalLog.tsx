@@ -23,7 +23,7 @@ export default function SignalLog() {
   };
 
   return (
-    <div className="panel flex flex-col" style={{ height: 180 }}>
+    <div className="signal-log-panel flex flex-col" style={{ height: 180 }}>
       <div className="panel-header">[ SIGNAL LOG ]</div>
       <div className="flex-1 overflow-y-auto p-2 font-mono text-xs">
         {state.signalLog.length === 0 && (

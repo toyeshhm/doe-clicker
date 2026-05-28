@@ -84,7 +84,7 @@ export default function ConduitsPanel() {
                 </div>
 
                 {/* Content */}
-                <div className="flex-1 min-w-0 px-2 py-1.5">
+                <div className="flex-1 min-w-0" style={{ padding: '6px 10px 6px 8px' }}>
                   <div className="flex items-center justify-between gap-1">
                     <span className="text-phosphor text-xs truncate" style={{ textShadow: affordable ? '0 0 6px rgba(0,255,65,0.3)' : 'none' }}>
                       {c.name}

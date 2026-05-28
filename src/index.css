@@ -27,6 +27,8 @@
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
+html, body { height: 100%; overflow: hidden; }
+
 /* ─── BODY + BACKGROUND ───────────────────────────────────────────────── */
 
 body {
@@ -118,7 +120,7 @@ body::after {
   z-index: 9998;
 }
 
-#root { width: 100%; min-height: 100vh; position: relative; z-index: 1; }
+#root { width: 100%; height: 100%; position: relative; z-index: 1; }
 
 /* ─── KEYFRAMES ───────────────────────────────────────────────────────── */
 

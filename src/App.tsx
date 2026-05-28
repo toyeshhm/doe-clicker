@@ -91,12 +91,12 @@ function GameUI() {
   const [tab, setTab] = useState<Tab>('upgrades');
 
   return (
-    <div className={`flex flex-col min-h-screen ${isGlitching ? 'glitch-active' : ''} ${state.transcendenceMode ? 'transcendence-mode' : ''}`}>
+    <div className={`flex flex-col h-screen overflow-hidden ${isGlitching ? 'glitch-active' : ''} ${state.transcendenceMode ? 'transcendence-mode' : ''}`}>
 
       <HUD />
 
       {/* 3-column layout */}
-      <div className="flex flex-1 gap-2 p-2" style={{ minHeight: 0, height: 'calc(100vh - 48px)' }}>
+      <div className="flex flex-1 gap-2 p-2" style={{ minHeight: 0, overflow: 'hidden' }}>
 
         {/* LEFT — The Doe */}
         <div className="flex flex-col gap-2 overflow-hidden" style={{ width: 316, flexShrink: 0 }}>

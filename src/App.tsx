@@ -17,6 +17,56 @@ import { formatDoe, formatDps } from './utils/formatting';
 
 type Tab = 'upgrades' | 'codex' | 'stats';
 
+/* Animated nebula color layer — blobs float and breathe behind all UI */
+function NebulaLayer() {
+  return (
+    <div aria-hidden style={{ position: 'fixed', inset: 0, pointerEvents: 'none', zIndex: 0, overflow: 'hidden' }}>
+      {/* Magenta — top right */}
+      <div className="nebula-blob" style={{
+        width: 720, height: 520,
+        background: 'radial-gradient(circle at center, rgba(255,0,110,0.24) 0%, rgba(200,0,80,0.10) 50%, transparent 70%)',
+        top: -140, right: -80,
+        animationName: 'nebula-drift-a', animationDuration: '20s', animationTimingFunction: 'ease-in-out', animationIterationCount: 'infinite', animationDelay: '0s',
+      }} />
+      {/* Violet — bottom left */}
+      <div className="nebula-blob" style={{
+        width: 820, height: 640,
+        background: 'radial-gradient(circle at center, rgba(100,40,255,0.21) 0%, rgba(60,0,200,0.08) 50%, transparent 70%)',
+        bottom: -160, left: -130,
+        animationName: 'nebula-drift-b', animationDuration: '26s', animationTimingFunction: 'ease-in-out', animationIterationCount: 'infinite', animationDelay: '-9s',
+      }} />
+      {/* Teal — center right */}
+      <div className="nebula-blob" style={{
+        width: 560, height: 560,
+        background: 'radial-gradient(circle at center, rgba(0,220,200,0.18) 0%, rgba(0,180,160,0.07) 50%, transparent 70%)',
+        top: '25%', right: -90,
+        animationName: 'nebula-drift-c', animationDuration: '19s', animationTimingFunction: 'ease-in-out', animationIterationCount: 'infinite', animationDelay: '-5s',
+      }} />
+      {/* Orange — lower right */}
+      <div className="nebula-blob" style={{
+        width: 500, height: 420,
+        background: 'radial-gradient(circle at center, rgba(255,120,40,0.17) 0%, rgba(200,80,0,0.07) 50%, transparent 70%)',
+        bottom: '8%', right: '18%',
+        animationName: 'nebula-drift-a', animationDuration: '23s', animationTimingFunction: 'ease-in-out', animationIterationCount: 'infinite', animationDelay: '-13s',
+      }} />
+      {/* Electric blue — center left */}
+      <div className="nebula-blob" style={{
+        width: 620, height: 520,
+        background: 'radial-gradient(circle at center, rgba(40,100,255,0.16) 0%, rgba(0,60,200,0.06) 50%, transparent 70%)',
+        top: '38%', left: -70,
+        animationName: 'nebula-drift-b', animationDuration: '17s', animationTimingFunction: 'ease-in-out', animationIterationCount: 'infinite', animationDelay: '-7s',
+      }} />
+      {/* Rose — upper center */}
+      <div className="nebula-blob" style={{
+        width: 420, height: 360,
+        background: 'radial-gradient(circle at center, rgba(255,60,180,0.14) 0%, rgba(180,0,120,0.05) 50%, transparent 70%)',
+        top: '10%', left: '35%',
+        animationName: 'nebula-drift-c', animationDuration: '31s', animationTimingFunction: 'ease-in-out', animationIterationCount: 'infinite', animationDelay: '-18s',
+      }} />
+    </div>
+  );
+}
+
 /* Grain/noise overlay — single fixed div, z-index below UI but above body bg */
 function NoiseOverlay() {
   return (
@@ -27,7 +77,7 @@ function NoiseOverlay() {
         inset: 0,
         pointerEvents: 'none',
         zIndex: 9997,
-        opacity: 0.038,
+        opacity: 0.028,
         backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E")`,
         backgroundRepeat: 'repeat',
         backgroundSize: '200px 200px',
@@ -139,6 +189,7 @@ export default function App() {
 
   return (
     <GameProvider>
+      <NebulaLayer />
       <NoiseOverlay />
       {!introDone && <IntroScreen onDone={handleIntroDone} />}
       <GameUI />

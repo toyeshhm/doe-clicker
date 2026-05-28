@@ -131,6 +131,23 @@ export function playDoeSpeaks() {
   });
 }
 
+export function playIntroTone() {
+  play(ctx => {
+    // Sub-bass rumble under each spoken line
+    const osc = ctx.createOscillator();
+    const gain = ctx.createGain();
+    osc.connect(gain);
+    gain.connect(ctx.destination);
+    osc.type = 'sine';
+    osc.frequency.value = 38;
+    gain.gain.setValueAtTime(0, ctx.currentTime);
+    gain.gain.linearRampToValueAtTime(0.14, ctx.currentTime + 0.7);
+    gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 4.5);
+    osc.start();
+    osc.stop(ctx.currentTime + 4.5);
+  });
+}
+
 export function playBlip() {
   play(ctx => {
     const o = ctx.createOscillator();

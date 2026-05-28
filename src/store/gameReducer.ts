@@ -112,7 +112,7 @@ export function gameReducer(state: GameState, action: GameAction): GameState {
 
     case 'TICK': {
       const dps = computeDps(state);
-      const earned = dps * (action.delta / 1000);
+      const earned = dps * (action.delta / 1000) * (action.goldenMultiplier ?? 1);
       const newState = {
         ...state,
         doe: state.doe + earned,

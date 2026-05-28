@@ -80,33 +80,30 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
   }, []);
 
   // Main game tick
+  const activeGoldenEffectRef = useRef(activeGoldenEffect);
+  activeGoldenEffectRef.current = activeGoldenEffect;
+
   useEffect(() => {
     let lastTime = Date.now();
     const tick = () => {
       const now = Date.now();
       const delta = Math.min(now - lastTime, 200);
       lastTime = now;
-      dispatch({ type: 'TICK', delta });
+      const eff = activeGoldenEffectRef.current;
+      const goldenMultiplier = eff && now < eff.endTime ? eff.multiplier : 1;
+      dispatch({ type: 'TICK', delta, goldenMultiplier });
     };
     const id = setInterval(tick, 50);
     return () => clearInterval(id);
   }, []);
 
-  // DPS multiplier from golden events
+  // Clear golden effect once it expires
   useEffect(() => {
     if (!activeGoldenEffect) return;
-    if (activeGoldenEffect.type === 'void-flush') {
-      // Handled in tick bonus — add doe directly
-      const interval = setInterval(() => {
-        if (Date.now() > activeGoldenEffect.endTime) {
-          clearInterval(interval);
-          setActiveGoldenEffect(null);
-          return;
-        }
-        dispatch({ type: 'TICK', delta: 50 });
-      }, 50);
-      return () => clearInterval(interval);
-    }
+    const remaining = activeGoldenEffect.endTime - Date.now();
+    if (remaining <= 0) { setActiveGoldenEffect(null); return; }
+    const t = setTimeout(() => setActiveGoldenEffect(null), remaining);
+    return () => clearTimeout(t);
   }, [activeGoldenEffect]);
 
   // Story event checking

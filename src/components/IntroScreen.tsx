@@ -1,6 +1,6 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
-import { playBlip } from '../utils/audio';
+import { playBlip, getMuted, playIntroTone } from '../utils/audio';
 
 const INTRO_TEXT = [
   "You did not find this.",
@@ -20,11 +20,52 @@ const INTRO_TEXT = [
   "Begin.",
 ];
 
+// Voices that sound genuinely unsettling — macOS novelty voices in priority order,
+// then fall back to deepest available English voice.
+const SCARY_VOICE_PRIORITY = ['Zarvox', 'Bad News', 'Trinoids', 'Deranged', 'Fred', 'Organ', 'Cellos'];
+
+function pickVoice(): SpeechSynthesisVoice | null {
+  const voices = window.speechSynthesis.getVoices();
+  for (const name of SCARY_VOICE_PRIORITY) {
+    const found = voices.find(v => v.name.includes(name));
+    if (found) return found;
+  }
+  return voices.find(v => v.lang.startsWith('en')) ?? null;
+}
+
+function doSpeak(text: string) {
+  const utt = new SpeechSynthesisUtterance(text);
+  const voice = pickVoice();
+  if (voice) utt.voice = voice;
+  utt.rate = 0.6;
+  utt.pitch = 0.1; // minimum — as deep as the API allows
+  utt.volume = 0.92;
+  window.speechSynthesis.speak(utt);
+  playIntroTone();
+}
+
+function speakLine(text: string) {
+  if (!text || getMuted()) return;
+  if (!window.speechSynthesis) return;
+  // Voices load asynchronously on first page load
+  if (window.speechSynthesis.getVoices().length > 0) {
+    doSpeak(text);
+  } else {
+    window.speechSynthesis.addEventListener('voiceschanged', () => doSpeak(text), { once: true });
+  }
+}
+
 export default function IntroScreen({ onDone }: { onDone: () => void }) {
   const [lineIndex, setLineIndex] = useState(0);
   const [charIndex, setCharIndex] = useState(0);
   const [done, setDone] = useState(false);
   const [displayed, setDisplayed] = useState<string[]>([]);
+  const spokenRef = useRef<Set<number>>(new Set());
+
+  // Cancel speech on unmount
+  useEffect(() => {
+    return () => { window.speechSynthesis?.cancel(); };
+  }, []);
 
   useEffect(() => {
     if (lineIndex >= INTRO_TEXT.length) {
@@ -35,6 +76,10 @@ export default function IntroScreen({ onDone }: { onDone: () => void }) {
     if (charIndex >= line.length) {
       const timer = setTimeout(() => {
         setDisplayed(prev => [...prev, line]);
+        if (!spokenRef.current.has(lineIndex)) {
+          spokenRef.current.add(lineIndex);
+          speakLine(line);
+        }
         setLineIndex(l => l + 1);
         setCharIndex(0);
       }, line === '' ? 400 : 200);
@@ -49,11 +94,17 @@ export default function IntroScreen({ onDone }: { onDone: () => void }) {
 
   const currentLine = lineIndex < INTRO_TEXT.length ? INTRO_TEXT[lineIndex].slice(0, charIndex) : '';
 
+  const handleDone = () => {
+    window.speechSynthesis?.cancel();
+    playBlip();
+    onDone();
+  };
+
   return (
     <div
       className="fixed inset-0 z-50 flex items-center justify-center"
       style={{ background: '#000' }}
-      onClick={done ? () => { playBlip(); onDone(); } : undefined}
+      onClick={done ? handleDone : undefined}
     >
       <div className="max-w-md w-full px-8 py-12">
         {displayed.map((line, i) => (

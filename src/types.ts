@@ -114,7 +114,7 @@ export interface GameState {
 
 export type GameAction =
   | { type: 'CLICK'; clickValue: number }
-  | { type: 'TICK'; delta: number }
+  | { type: 'TICK'; delta: number; goldenMultiplier?: number }
   | { type: 'BUY_CONDUIT'; conduitId: string; quantity: number; cost: number }
   | { type: 'BUY_UPGRADE'; upgradeId: string }
   | { type: 'ADD_SIGNAL'; entry: Omit<SignalEntry, 'id' | 'timestamp'> }

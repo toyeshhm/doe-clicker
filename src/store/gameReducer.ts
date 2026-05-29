@@ -183,7 +183,7 @@ export function gameReducer(state: GameState, action: GameAction): GameState {
         ? { id: Math.random().toString(36).slice(2), label: 'NULL WINDFALL ×15', type: 'windfall', dpsMultiplier: 15, expiresAt: now + 30_000 }
         : { id: Math.random().toString(36).slice(2), label: 'VOID DRAIN −50%', type: 'null-drain', dpsMultiplier: 0.5, expiresAt: now + 15_000 };
       const filtered = state.activeBuffs.filter(b => b.type !== buff.type);
-      return { ...state, activeBuffs: [...filtered, buff] };
+      return { ...state, activeBuffs: [...filtered, buff], goldenCaught: state.goldenCaught + 1 };
     }
 
     case 'BUY_CONDUIT': {

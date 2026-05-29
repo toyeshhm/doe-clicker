@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useGame } from '../store/GameContext';
 import { CONDUITS } from '../data/conduits';
-import { UPGRADES } from '../data/upgrades';
+import { UPGRADES, UPGRADE_MAP } from '../data/upgrades';
 import type { Conduit } from '../types';
 import { conduitCostBulk, maxAffordable, formatDoe, formatDps } from '../utils/formatting';
 import { playPurchase } from '../utils/audio';
@@ -39,7 +39,28 @@ export default function ConduitsPanel() {
     const owned = state.conduits[c.id] || 0;
     if (owned === 0) return null;
 
-    const conduitDps = c.baseDps * owned;
+    // Compute effective DPS for this conduit (mirrors computeDps logic for one building)
+    const shortMap: Record<string, string> = {
+      'residue-echo': 're', 'null-aperture': 'na', 'glyph-anchor': 'ga',
+      'margin-listener': 'ml', 'unmade-shrine': 'us', 'void-harmonic': 'vh',
+    };
+    const prefix = shortMap[c.id];
+    let buildingMult = 1;
+    if (prefix) {
+      for (const tier of ['t1', 't2', 't3']) {
+        const uid = `${prefix}-${tier}`;
+        if (state.upgrades.has(uid)) {
+          const up = UPGRADE_MAP[uid];
+          if (up?.multiplier) buildingMult *= up.multiplier;
+        }
+      }
+    }
+    let allMult = 1;
+    for (const uid of state.upgrades) {
+      const up = UPGRADE_MAP[uid];
+      if (up?.type === 'all' && up.allMultiplier) allMult *= up.allMultiplier;
+    }
+    const conduitDps = c.baseDps * owned * buildingMult * allMult;
     const pct = totalDps > 0 ? ((conduitDps / totalDps) * 100).toFixed(1) : '0.0';
     const effBlocks = Math.min(5, Math.ceil((conduitDps / Math.max(totalDps, 1)) * 25));
     const effStr = '█'.repeat(effBlocks) + '░'.repeat(5 - effBlocks);

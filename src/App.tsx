@@ -14,6 +14,11 @@ import NullSurgeEvent from './components/NullSurgeEvent';
 import AscensionScreen from './components/AscensionScreen';
 import IntroScreen from './components/IntroScreen';
 import Toasts from './components/Toasts';
+import SignalTicker from './components/SignalTicker';
+import BuffsBar from './components/BuffsBar';
+import ResonanceBar from './components/ResonanceBar';
+import VoidLeechLayer from './components/VoidLeechLayer';
+import NullFractureEvent from './components/NullFractureEvent';
 import { formatDoe, formatDps } from './utils/formatting';
 
 type Tab = 'upgrades' | 'codex' | 'stats' | 'achievements';
@@ -95,6 +100,8 @@ function GameUI() {
     <div className={`flex flex-col h-screen overflow-hidden ${isGlitching ? 'glitch-active' : ''} ${state.transcendenceMode ? 'transcendence-mode' : ''}`}>
 
       <HUD />
+      <SignalTicker />
+      <BuffsBar />
 
       {/* 3-column layout */}
       <div className="flex flex-1 gap-2 p-2" style={{ minHeight: 0, overflow: 'hidden' }}>
@@ -126,8 +133,13 @@ function GameUI() {
               </div>
             </div>
 
-            {/* The Doe SVG */}
-            <DoeClickable />
+            <ResonanceBar />
+
+            {/* The Doe SVG + leeches */}
+            <div style={{ position: 'relative', display: 'inline-block' }}>
+              <DoeClickable />
+              <VoidLeechLayer />
+            </div>
 
             {/* Lore quote */}
             <div className="lore-quote-box w-full p-2 text-center" style={{ marginTop: 'auto' }}>
@@ -181,6 +193,7 @@ function GameUI() {
 
       <MilestoneModal />
       <GoldenDoeEvent />
+      <NullFractureEvent />
       <NullSurgeEvent />
       <AscensionScreen />
       <Toasts />

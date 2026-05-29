@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useReducer, useEffect, useRef, useState, useCallback } from 'react';
-import type { GameState, GameAction, ToastMessage, ClickParticle, GoldenEvent, NullSurge } from '../types';
+import type { GameState, GameAction, ToastMessage, ClickParticle, GoldenEvent, NullSurge, VoidLeech } from '../types';
 import { gameReducer, INITIAL_STATE, computeClickValue } from './gameReducer';
 import { STORY_EVENTS } from '../data/storyEvents';
 import { ACHIEVEMENTS } from '../data/achievements';
@@ -12,6 +12,8 @@ interface GameContextValue {
   toasts: ToastMessage[];
   particles: ClickParticle[];
   goldenEvent: GoldenEvent | null;
+  nullFractureEvent: GoldenEvent | null;
+  catchNullFracture: () => void;
   nullSurge: NullSurge | null;
   showAscension: boolean;
   showModal: { title: string; text: string; actNum?: number } | null;
@@ -46,6 +48,7 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
   const [toasts, setToasts] = useState<ToastMessage[]>([]);
   const [particles, setParticles] = useState<ClickParticle[]>([]);
   const [goldenEvent, setGoldenEvent] = useState<GoldenEvent | null>(null);
+  const [nullFractureEvent, setNullFractureEvent] = useState<GoldenEvent | null>(null);
   const [nullSurge, setNullSurge] = useState<NullSurge | null>(null);
   const [showAscension, setShowAscension] = useState(false);
   const [showModal, setShowModal] = useState<{ title: string; text: string; actNum?: number } | null>(null);
@@ -170,30 +173,45 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
     }
   }, [state.totalDoeEver]);
 
-  // Golden Doe events
+  // Golden Doe / Null Fracture events
   useEffect(() => {
-    function scheduleGolden() {
-      const delay = 300000 + Math.random() * 600000; // 5-15 min
+    function scheduleShimmer() {
+      const delay = 300000 + Math.random() * 600000; // 5–15 min
       return setTimeout(() => {
-        if (!goldenEvent) {
+        if (!goldenEvent && !nullFractureEvent) {
           const x = 10 + Math.random() * 70;
           const y = 10 + Math.random() * 70;
-          setGoldenEvent({ id: Math.random().toString(36).slice(2), x, y, startTime: Date.now() });
-          playGolden();
-          const timer = setTimeout(() => {
-            setGoldenEvent(prev => {
-              if (prev) dispatch({ type: 'MISS_GOLDEN' });
-              return null;
-            });
-          }, 8000);
-          return () => clearTimeout(timer);
+          const id = Math.random().toString(36).slice(2);
+          const spawnFracture = stateRef.current.totalDoeEver >= 1e7 && Math.random() < 0.25;
+
+          if (spawnFracture) {
+            setNullFractureEvent({ id, x, y, startTime: Date.now() });
+            playGolden();
+            const dismissTimer = setTimeout(() => {
+              setNullFractureEvent(prev => {
+                if (prev) dispatch({ type: 'MISS_GOLDEN' });
+                return null;
+              });
+            }, 12000);
+            return () => clearTimeout(dismissTimer);
+          } else {
+            setGoldenEvent({ id, x, y, startTime: Date.now() });
+            playGolden();
+            const dismissTimer = setTimeout(() => {
+              setGoldenEvent(prev => {
+                if (prev) dispatch({ type: 'MISS_GOLDEN' });
+                return null;
+              });
+            }, 8000);
+            return () => clearTimeout(dismissTimer);
+          }
         }
-        scheduleGolden();
+        scheduleShimmer();
       }, delay);
     }
-    const t = scheduleGolden();
+    const t = scheduleShimmer();
     return () => clearTimeout(t);
-  }, [goldenEvent]);
+  }, [goldenEvent, nullFractureEvent]);
 
   // Null Surge events (Act IV)
   useEffect(() => {
@@ -221,6 +239,43 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
     const t = scheduleSurge();
     return () => clearTimeout(t);
   }, [state.totalDoeEver >= 1e9]);
+
+  // Void Leech spawn timer — runs once on mount; reads current state via stateRef
+  useEffect(() => {
+    function findFreeAngle(existingAngles: number[]): number {
+      for (let i = 0; i < 20; i++) {
+        const candidate = Math.random() * 360;
+        const tooClose = existingAngles.some(a => {
+          const diff = Math.abs(candidate - a);
+          return Math.min(diff, 360 - diff) < 30;
+        });
+        if (!tooClose) return candidate;
+      }
+      return Math.random() * 360;
+    }
+
+    function scheduleLeech() {
+      const delay = 180000 + Math.random() * 120000; // 3–5 min
+      return setTimeout(() => {
+        const s = stateRef.current;
+        if (s.leeches.length < 6 && s.totalDoeEver >= 1e4) {
+          const angle = findFreeAngle(s.leeches.map((l: VoidLeech) => l.angle));
+          const leech: VoidLeech = {
+            id: Math.random().toString(36).slice(2),
+            angle,
+            attachedAt: Date.now(),
+            absorbed: 0,
+          };
+          dispatch({ type: 'SPAWN_LEECH', leech });
+          dispatch({ type: 'ADD_SIGNAL', entry: { text: 'VOID LEECH DETECTED — PURGE RECOMMENDED', color: 'amber' } });
+          addToast('[ VOID LEECH ATTACHED ]', 'amber');
+        }
+        scheduleLeech();
+      }, delay);
+    }
+    const t = scheduleLeech();
+    return () => clearTimeout(t);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   // Autosave
   useEffect(() => {
@@ -286,14 +341,17 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
     const effect = GOLDEN_EFFECTS[effectIdx];
     const dps = stateRef.current.doePerSecond;
     let bonus = 0;
+    const now = Date.now();
 
     if (effect === 'void-flush') {
-      setActiveGoldenEffect({ type: 'void-flush', endTime: Date.now() + 7000, multiplier: 13 });
+      setActiveGoldenEffect({ type: 'void-flush', endTime: now + 7000, multiplier: 13 });
+      dispatch({ type: 'APPLY_BUFF', buff: { id: Math.random().toString(36).slice(2), label: 'VOID FLUSH ×13', type: 'void-flush', expiresAt: now + 7000 } });
       addToast('VOID FLUSH — 13x for 7s', 'amber');
       bonus = dps * 7 * 13;
     } else if (effect === 'resonant-frenzy') {
+      setActiveGoldenEffect({ type: 'resonant-frenzy', endTime: now + 77000, multiplier: 7 });
+      dispatch({ type: 'APPLY_BUFF', buff: { id: Math.random().toString(36).slice(2), label: 'RESONANT FRENZY ×7', type: 'frenzy', expiresAt: now + 77000 } });
       addToast('RESONANT FRENZY — 7x DPS for 77s', 'amber');
-      setActiveGoldenEffect({ type: 'resonant-frenzy', endTime: Date.now() + 77000, multiplier: 7 });
     } else if (effect === 'null-windfall') {
       bonus = dps * 60 * 15;
       addToast('NULL WINDFALL — 15 minutes of DPS granted', 'amber');
@@ -309,6 +367,21 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
     setGoldenEvent(null);
     playGolden();
   }, [goldenEvent, addToast]);
+
+  const catchNullFracture = useCallback(() => {
+    if (!nullFractureEvent) return;
+    const bonus = Math.random() < 0.6;
+    dispatch({ type: 'CATCH_NULL_FRACTURE', bonus });
+    if (bonus) {
+      dispatch({ type: 'ADD_SIGNAL', entry: { text: 'NULL FRACTURE: Void energy discharged. 15× DPS for 30s.', color: 'amber' } });
+      addToast('[ NULL FRACTURE — WINDFALL ×15 ]', 'amber');
+    } else {
+      dispatch({ type: 'ADD_SIGNAL', entry: { text: 'NULL FRACTURE: Reality breached. −50% DPS for 15s.', color: 'crimson' } });
+      addToast('[ NULL FRACTURE — VOID DRAIN ACTIVE ]', 'crimson');
+    }
+    setNullFractureEvent(null);
+    playGolden();
+  }, [nullFractureEvent, addToast]);
 
   const sealSurge = useCallback(() => {
     if (!nullSurge) return;
@@ -327,7 +400,7 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
 
   return (
     <GameContext.Provider value={{
-      state, dispatch, toasts, particles, goldenEvent, nullSurge,
+      state, dispatch, toasts, particles, goldenEvent, nullFractureEvent, catchNullFracture, nullSurge,
       showAscension, showModal, showChoice, showDoeSpeaks, currentQuote,
       addToast, addParticle, dismissModal, dismissDoeSpeaks, handleChoice,
       catchGolden, sealSurge, triggerAscension, dismissAscension, isGlitching,

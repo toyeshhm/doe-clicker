@@ -1,0 +1,77 @@
+- generic [ref=e3]:
+  - generic [ref=e4]: v. 2.058
+  - generic [ref=e7]:
+    - generic [ref=e10]: Loading...
+    - generic [ref=e11]:
+      - text: This is taking longer than expected.
+      - generic [ref=e12]:
+        - text: Slow connection? If not, please make sure your javascript is enabled, then refresh.
+        - text: If problems persist, this might be on our side - wait a few minutes, then hit ctrl+f5!
+  - button [ref=e18] [cursor=pointer]
+  - generic [ref=e22]:
+    - generic [ref=e24] [cursor=pointer]: Options
+    - generic [ref=e26] [cursor=pointer]: Stats
+    - generic [ref=e28] [cursor=pointer]: Info
+    - generic [ref=e30] [cursor=pointer]: Legacy
+  - generic [ref=e38]:
+    - generic [ref=e39]:
+      - insertion [ref=e40]:
+        - iframe [ref=e42]:
+          - generic [ref=f6e3]:
+            - link "0" [ref=f6e4] [cursor=pointer]:
+              - /url: "#"
+            - link "1" [ref=f6e5] [cursor=pointer]:
+              - /url: "#"
+            - generic [ref=f6e6]:
+              - img [ref=f6e9]
+              - generic [ref=f6e17]:
+                - button "Opt Out Do not sell my personal information" [ref=f6e19] [cursor=pointer]
+                - button "Why this Ad? ⓘ" [ref=f6e21] [cursor=pointer]
+              - generic [ref=f6e26] [cursor=pointer]:
+                - generic [ref=f6e29]:
+                  - generic [ref=f6e30]: Download
+                  - generic [ref=f6e31]: Extension for Mac (Free)
+                - generic [ref=f6e32]:
+                  - paragraph [ref=f6e33]: Only 2 Steps
+                  - paragraph [ref=f6e34]: Click "Download"
+                  - paragraph [ref=f6e36]: Add Safe Suggest for Chrome
+              - generic [ref=f6e43]:
+                - generic [ref=f6e44]:
+                  - button "Ad covered content" [ref=f6e46] [cursor=pointer]
+                  - button "Already bought this" [ref=f6e48] [cursor=pointer]
+                - generic [ref=f6e49]:
+                  - button "Not interested in this ad" [ref=f6e51] [cursor=pointer]
+                  - button "Seen this ad multiple times" [ref=f6e53] [cursor=pointer]
+              - generic [ref=f6e57]:
+                - paragraph [ref=f6e59]: About this Ad
+                - paragraph [ref=f6e61]: Thank you for reporting the ad. We will review it promptly
+              - generic [ref=f6e65]:
+                - paragraph [ref=f6e67]: About this Ad
+                - paragraph [ref=f6e69]: You have successfully opted out of our communications. We have removed your personal data from our systems and will no longer store or use it.
+            - link "2" [ref=f6e70] [cursor=pointer]:
+              - /url: "#"
+            - link "3" [ref=f6e71] [cursor=pointer]:
+              - /url: "#"
+      - generic [ref=e43]: ⮝ Sponsored link ⮝
+    - generic [ref=e45]: Store
+    - generic [ref=e52]:
+      - generic [ref=e53]: ⮟ Sponsored links ⮟
+      - generic [ref=e55]:
+        - insertion [ref=e56]:
+          - iframe [ref=e58]:
+            - generic [ref=f7e3]:
+              - link "Direct Meds Modern GLP1 Care Made Simple & Cheaper" [ref=f7e4] [cursor=pointer]:
+                - /url: https://tracenep.admaster.cc/ju/ic?tn=2ce2e6e33746b4224011d22068a89c02&trackingid=4d12c4883fb8580103db567cc314bfd0&acid=37019&data=MyfBkKGC4MO8nl2_BZLce8txgVRQVFUPgaFDpPvvbngGpd_VHuCArHOuYkoe97bg8BFeunCkrlzM61hdvkWRsLy2dmtuD2V53Xr4ZT_6-hS5CvajYpGdH95n4p0sPq42KSvxV0X_vf8DdpZK17fjwx2fVUImS47KzGmekWl5kTXNeby1XHIBAyBHxrUhH8Pv14m9ZwsscYPMmbIrp7b9X1KcazWjS9LEjaL3LC3x1OlaUYysq19nffTCAQqrr8qQS8JD8yjd-chQ3AX-D5ksVA6WbBdkq6R9nx2MB3jQ94L_f_zFqLwzFTo8l-InELz9J-hjCU6r0rzEHoVeQSmJbwW90oNRqH_zKOzNMz044lpLxPBTlz7mtn3x25CN33Z25hH0nBWTCIVW63ZRpwcMy13pWIBbV9Scs-FLOWiRV1zqiXtJ3JRToMOIPGUTxMcKCjXgiHKc7B4f8XzXe3q4gd3MSuwp2bXLquopLRwtVor4NjqSOs_CWkmJxP1lVJ68GQcMJ5h6cCluf4QZICX2XvBSGdhNUwvsZvoMTzLhRCQ0U81j1Xide0SGVD5UkcYcPjBtxG6qO8Y7NSq1IjuJKR645LZfDJjj3xelLIMwyStJqZyPAJjOY-OSCWEijBFKThPoAlQImjvt6f5xknhFdOZJvAohZ3u2mSGqilpVmZjnCQI1EMH7N1YJ37bk-RJESbG9JLfUrljNbDhhNty6lQ9bQIPzrNW7YO3Vy_i8-ZucDIc8rZZvNZmC-mPocn6Q99L4bmPY-evj6zGULkvX3X0wWsFFoPbNc_gA73mlSvGeBzWPy6bMd0JzLkE7F4-ln46SrPLLT6NSI6JINis5G8aJnkbLmbnn3M27rcm9cOWAapqwkUinPZ1uM6K6FXuahXvvz0M-YYhYRpYCBD1c6gv-xvE_DQjwlbtPW-2zJzeRCVnMkvlvTn38kJjy4lWS0qJlmKnBGfaXn98YCLUNRXvjSy52_TK6WSA6qv_mhc6P16e_W57PfVW4-VSQnkicWQzSl9sMU5k4eYzD2E9tY7FzZf-1glqJH3XjpYOCR6jtbtuPSPRi4stL8bKEeUOhScgH592WvGmbRJzfQyknNuvqUiSUxVIwnR-oh7NsBtPA2MWZO2GScJ1Y5rCDproZqMBlk4mkvZcyYzG9_tVNvko9YT21pCXKB7mE9wlDcseVDlmxEgCMk-igFBy8XKmYJiNPOY3c4TtAPogvyTd_k_4eeeN-DIRYJJUKmxGlhj4t2KfAVq9TN1r8xAjZQ3IynSWTxbAjmTVsHwP-FDiZr7g6fQJ8I64c7XllOhqxwL11rPHizfxNj2O3ML689yMCyeH335Q6LOM2slgzMIL737pvHA53hKpOaAq43oRRP5aEqXPLALq-CZrSgctM-Eo6NE-F0ZyQ47t368QFhr5s_hDgZSJI4eJCheHP3f4DjnPSn3CU1e_O5bOQBsDkPZ94vb6qrsy9qOuoYjONlQeJdVwxpvbh_HAyiTB8EawoxTnqDzSZ9cRopV4hOkx45V4Ua0NEJ-wCZ0pCXzTimw-YHP30WQGjySjJ3QpAUqxhcJIILeHy_p8_Sy5UxdkGpKJ_QaSwcjSTmHispqeGo3KnwOPAesgy9D-d8Pqugzk28xPLLKWvTsyfARRHfJ4-wk2ZW-zrn4Gdsb_CzRMUfjcKeZNXwm9XG8rTpijjqJXey8r1NDAH8Gaetz0GCAWC4LVL0SunwjNuJELBQxhPP83xi5yo-08y3w6nl7Tp1A0GrjWtULjarYuU6v9M417WiUcTCRn4wd4UmiS4vwTStEL5yKSiFtPy_JWLCgvMbNmKjrde9bfpSJ9fcrG3JiyO2TPXoHHF7PytNiqwYWdK-aMPfFwsbi6-uO0saw6lYrNX1nlpW45PvYZ63-N45_OHuFFZ0DTK7X7R5htLvNI9Ky62yrJKZuzQCCAo6poCD6SyToJRQw-_U2wFRsd5hqxxPHgu2QLxvp8f4uy8q7fs6WmtBaIf03IVAxZWN5tIaYF4YfRfiIxz_MOYpy7HzeDaT56oXS6AR6ixjvgQ61q-kdCAi0Mcq8wP-6BLf5BlBGUs0r0&uid=mid_d9ae8dcc18dc0b2d62a25385afb6b157&mguid=&ap=0.049514&tid=107&gprice=cnc061J4M8GtRlWHhy_QMJtdhwmDkBbnNO0oHW2onOc&campaignid=5165781&c_sync=1&google_click_url=https://adclick.g.doubleclick.net/aclk%3Fsa%3DL%26ai%3DCaVky6cUYatOcHu-KmtUPtYO6mQ-ltoSEe8z8yrWgE8CNtwEQASCBn9GkAWDJxvKM5KTAE8gBCagDAcgDAqoE3gFP0IuWbReLCvjPvUucvcUa51uE3Q-oKFpHYSMNfGRJhJ2Ctdry0iL5Ia3zvtmePoeUBaYIRvAOt-ZzHpqyQtdTUEpuh2BIq2QM0xk1B7HYWAgfsZakt563HBWjoLZ2hP4a6dEeHW3P-IuRDwiXoeRVQ7h9yo4sDUDYoXafj6bj30MWxCUcqIANpSkAVh_kBCPq8FrjZheoSEpIxVigfp_WHVpo24labNiikwxp1n1_ZjLhAextG3r9N6dd6hwoE7WEwdMMQGz15KyxgavEuMd0N9diyd7AtW1LO90HALeABsvUgonf8sWyeqAGIagHk9ixAqgHlNixAqgHldixAqgHpr4bqAeW2BuoB6qbsQKoB_-esQKoB9-fsQKoB62-sQKoB7_TsQLYBwDSCC4IgGEQATIIioKAgICAgAg6D4BAgMCAgICAqIACqIOQEEi9_cE6WLeamI-I3ZQD-gsCCAGADAGqDQJVU-oNEwinu5iPiN2UAxVvhaYEHbWBLvOIDgnQFQGAFwGyFxAYDCoKNTI1NzY5OTc5M1ABqhgXCRFYObQEJONAEgo1MjU3Njk5NzkzGAE%26num%3D1%26sig%3DAOD64_0LR8FnzIkApVnO3RncvlWh_YolRQ%26client%3Dca-pub-5622691057838054%26adurl%3D
+                - img [ref=f7e5]
+                - generic [ref=f7e6]:
+                  - generic [ref=f7e7]: Direct Meds
+                  - generic [ref=f7e8]: Modern GLP1 Care Made Simple & Cheaper
+                  - img [ref=f7e10]
+              - link "ad" [ref=f7e12] [cursor=pointer]:
+                - /url: //www.admaster.cc/privacy
+                - img [ref=f7e13]
+        - iframe [ref=e61]:
+          - link "Play Mr.Mine the Mining Clicker Game" [ref=f2e3] [cursor=pointer]:
+            - /url: https://serve.app.playsaurus.com/ad-creatives/9e853d46-d675-4436-a010-26af0df0f23a/click?impression=019e70c5-15bd-72f5-a390-1d3cde43202a
+        - link "AdventureQuest Worlds" [ref=e64] [cursor=pointer]:
+          - /url: http://www.aq.com/landing/cookie/?utm_campaign=AQW_CookieClicker&utm_source=CookieClicker

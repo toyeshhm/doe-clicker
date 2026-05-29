@@ -1,0 +1,255 @@
+{
+  "upgrades": [
+    {
+      "name": "Reinforced index finger",
+      "desc": "The mouse and cursors are twice as efficient.prod prod",
+      "pool": ""
+    },
+    {
+      "name": "Carpal tunnel prevention cream",
+      "desc": "The mouse and cursors are twice as efficient.it... it hurts to click...",
+      "pool": ""
+    },
+    {
+      "name": "Ambidextrous",
+      "desc": "The mouse and cursors are twice as efficient.Look ma, both hands!",
+      "pool": ""
+    },
+    {
+      "name": "Thousand fingers",
+      "desc": "The mouse and cursors gain +0.1 cookies for each non-cursor building owned.click",
+      "pool": ""
+    },
+    {
+      "name": "Million fingers",
+      "desc": "Multiplies the gain from Thousand fingers by 5.clickityclickity",
+      "pool": ""
+    },
+    {
+      "name": "Billion fingers",
+      "desc": "Multiplies the gain from Thousand fingers by 10.clickityclickityclickity",
+      "pool": ""
+    },
+    {
+      "name": "Trillion fingers",
+      "desc": "Multiplies the gain from Thousand fingers by 20.clickityclickityclickityclickity",
+      "pool": ""
+    },
+    {
+      "name": "Forwards from grandma",
+      "desc": "Grandmas are twice as efficient.RE:RE:thought you'd get a kick out of this ;))",
+      "pool": ""
+    },
+    {
+      "name": "Steel-plated rolling pins",
+      "desc": "Grandmas are twice as efficient.Just what you kneaded.",
+      "pool": ""
+    },
+    {
+      "name": "Lubricated dentures",
+      "desc": "Grandmas are twice as efficient.squish",
+      "pool": ""
+    },
+    {
+      "name": "Cheap hoes",
+      "desc": "Farms are twice as efficient.Rake in the dough!",
+      "pool": ""
+    },
+    {
+      "name": "Fertilizer",
+      "desc": "Farms are twice as efficient.It's chocolate, I swear.",
+      "pool": ""
+    },
+    {
+      "name": "Cookie trees",
+      "desc": "Farms are twice as efficient.A relative of the breadfruit.",
+      "pool": ""
+    },
+    {
+      "name": "Sturdier conveyor belts",
+      "desc": "Factories are twice as efficient.You're going places.",
+      "pool": ""
+    },
+    {
+      "name": "Child labor",
+      "desc": "Factories are twice as efficient.Cheaper, healthier workforce.",
+      "pool": ""
+    },
+    {
+      "name": "Sweatshop",
+      "desc": "Factories are twice as efficient.Slackers will be terminated.",
+      "pool": ""
+    },
+    {
+      "name": "Sugar gas",
+      "desc": "Mines are twice as efficient.A pink, volatile gas, found in the depths of some c",
+      "pool": ""
+    },
+    {
+      "name": "Megadrill",
+      "desc": "Mines are twice as efficient.You're in deep.",
+      "pool": ""
+    },
+    {
+      "name": "Ultradrill",
+      "desc": "Mines are twice as efficient.Finally caved in?",
+      "pool": ""
+    },
+    {
+      "name": "Vanilla nebulae",
+      "desc": "Shipments are twice as efficient.If you removed your space helmet, you could pro",
+      "pool": ""
+    }
+  ],
+  "bufftypes": [],
+  "buildingDetails": [
+    {
+      "name": "Cursor",
+      "desc": "Autoclicks once every 10 seconds.",
+      "basePrice": 15
+    },
+    {
+      "name": "Grandma",
+      "desc": "A nice grandma to bake more cookies.",
+      "baseCps": 1,
+      "basePrice": 100
+    },
+    {
+      "name": "Farm",
+      "desc": "Grows cookie plants from cookie seeds.",
+      "baseCps": 8,
+      "basePrice": 1100
+    },
+    {
+      "name": "Mine",
+      "desc": "Mines out cookie dough and chocolate chips.",
+      "baseCps": 47,
+      "basePrice": 12000
+    },
+    {
+      "name": "Factory",
+      "desc": "Produces large quantities of cookies.",
+      "baseCps": 260,
+      "basePrice": 130000
+    },
+    {
+      "name": "Bank",
+      "desc": "Generates cookies from interest.",
+      "baseCps": 1400,
+      "basePrice": 1400000
+    },
+    {
+      "name": "Temple",
+      "desc": "Full of precious, ancient chocolate.",
+      "baseCps": 7800,
+      "basePrice": 20000000
+    },
+    {
+      "name": "Wizard tower",
+      "desc": "Summons cookies with magic spells.",
+      "baseCps": 44000,
+      "basePrice": 330000000
+    },
+    {
+      "name": "Shipment",
+      "desc": "Brings in fresh cookies from the cookie planet.",
+      "baseCps": 260000,
+      "basePrice": 5100000000
+    },
+    {
+      "name": "Alchemy lab",
+      "desc": "Turns gold into cookies!",
+      "baseCps": 1600000,
+      "basePrice": 75000000000
+    },
+    {
+      "name": "Portal",
+      "desc": "Opens a door to the Cookieverse.",
+      "baseCps": 10000000,
+      "basePrice": 1000000000000
+    },
+    {
+      "name": "Time machine",
+      "desc": "Brings cookies from the past, before they were even eaten.",
+      "baseCps": 65000000,
+      "basePrice": 14000000000000
+    },
+    {
+      "name": "Antimatter condenser",
+      "desc": "Condenses the antimatter in the universe into cookies.",
+      "baseCps": 430000000,
+      "basePrice": 170000000000000
+    },
+    {
+      "name": "Prism",
+      "desc": "Converts light itself into cookies.",
+      "baseCps": 2900000000,
+      "basePrice": 2100000000000000
+    },
+    {
+      "name": "Chancemaker",
+      "desc": "Generates cookies out of thin air through sheer luck.",
+      "baseCps": 21000000000,
+      "basePrice": 26000000000000000
+    },
+    {
+      "name": "Fractal engine",
+      "desc": "Turns cookies into even more cookies.",
+      "baseCps": 150000000000,
+      "basePrice": 310000000000000000
+    },
+    {
+      "name": "Javascript console",
+      "desc": "Creates cookies from the very code this game was written in.",
+      "baseCps": 1100000000000,
+      "basePrice": 71000000000000000000
+    },
+    {
+      "name": "Idleverse",
+      "desc": "There's been countless other idle universes running alongsid",
+      "baseCps": 8300000000000,
+      "basePrice": 1.2e+22
+    },
+    {
+      "name": "Cortex baker",
+      "desc": "These artificial brains the size of planets are capable of s",
+      "baseCps": 64000000000000,
+      "basePrice": 1.9000000000000003e+24
+    },
+    {
+      "name": "You",
+      "desc": "You, alone, are the reason behind all these cookies. You fig",
+      "baseCps": 510000000000000,
+      "basePrice": 5.4e+26
+    }
+  ],
+  "uiFeatures": {
+    "hasNewsTicker": false,
+    "hasMilkBar": false,
+    "hasSeasonPopup": true,
+    "hasBuffBar": true,
+    "hasSantaBtn": false,
+    "hasEggObject": false,
+    "topBar": [
+      "DashNet",
+      "Cookie Clicker",
+      "Orteil",
+      "tumblr",
+      "bluesky",
+      "Discord",
+      "Merch!",
+      "Change language",
+      " Steam",
+      " Android",
+      "Consoles",
+      " Cookie Clicker clickerby Fangamer",
+      "Latest",
+      "Try the beta!",
+      "v.2.052 (2023)",
+      "v.1.0466 (2014)",
+      "Classic (2013)"
+    ],
+    "infoTabs": [],
+    "subTabs": []
+  }
+}

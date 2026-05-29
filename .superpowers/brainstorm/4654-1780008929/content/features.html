@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Doe Clicker — Feature Proposals</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=VT323&family=Share+Tech+Mono&display=swap');
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: #060810;
+    color: #b8ffd0;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 13px;
+    line-height: 1.5;
+    padding: 24px;
+  }
+
+  h1 {
+    font-family: 'VT323', monospace;
+    font-size: 32px;
+    color: #00ff41;
+    letter-spacing: 3px;
+    text-shadow: 0 0 20px rgba(0,255,65,0.6);
+    margin-bottom: 6px;
+  }
+
+  .subtitle {
+    color: rgba(184,255,208,0.5);
+    font-size: 12px;
+    margin-bottom: 28px;
+    letter-spacing: 1px;
+  }
+
+  .feature-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-bottom: 28px;
+  }
+
+  .feature-card {
+    border: 1px solid rgba(0,255,65,0.2);
+    background: rgba(0,255,65,0.03);
+    padding: 16px;
+    position: relative;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .feature-card:hover {
+    border-color: rgba(0,255,65,0.5);
+    background: rgba(0,255,65,0.07);
+  }
+  .feature-card.selected {
+    border-color: #00ff41;
+    background: rgba(0,255,65,0.1);
+    box-shadow: 0 0 20px rgba(0,255,65,0.15);
+  }
+  .feature-card.selected::before {
+    content: '✓ SELECTED';
+    position: absolute;
+    top: 10px; right: 12px;
+    font-size: 10px;
+    color: #00ff41;
+    letter-spacing: 2px;
+  }
+
+  .feature-tag {
+    display: inline-block;
+    font-size: 10px;
+    letter-spacing: 2px;
+    padding: 2px 8px;
+    margin-bottom: 10px;
+    border: 1px solid;
+  }
+  .tag-ui { border-color: rgba(0,200,255,0.5); color: #00c8ff; }
+  .tag-mechanic { border-color: rgba(255,80,80,0.5); color: #ff5050; }
+  .tag-atmosphere { border-color: rgba(180,100,255,0.5); color: #b464ff; }
+
+  .feature-title {
+    font-family: 'VT323', monospace;
+    font-size: 22px;
+    color: #ffc200;
+    margin-bottom: 6px;
+    letter-spacing: 1px;
+  }
+
+  .feature-desc {
+    color: rgba(184,255,208,0.7);
+    font-size: 11px;
+    margin-bottom: 12px;
+    line-height: 1.6;
+  }
+
+  .mockup-area {
+    border: 1px solid rgba(255,255,255,0.08);
+    background: rgba(0,0,0,0.4);
+    padding: 10px;
+    margin-top: 10px;
+  }
+
+  /* BUFF BAR MOCKUP */
+  .buff-bar {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+  }
+  .buff-chip {
+    border: 1px solid;
+    padding: 4px 10px;
+    font-size: 11px;
+    font-family: 'VT323', monospace;
+    font-size: 15px;
+    position: relative;
+    overflow: hidden;
+  }
+  .buff-chip.frenzy { border-color: #ffc200; color: #ffc200; }
+  .buff-chip.click { border-color: #ff5050; color: #ff5050; }
+  .buff-chip-timer {
+    position: absolute; bottom: 0; left: 0; height: 2px;
+    background: currentColor; opacity: 0.5;
+    animation: timer-drain 8s linear forwards;
+  }
+  @keyframes timer-drain { from { width: 100%; } to { width: 0%; } }
+
+  /* VOID LEECH MOCKUP */
+  .doe-area {
+    width: 100%;
+    height: 100px;
+    background: radial-gradient(circle at center, rgba(0,40,20,0.8), transparent);
+    border: 1px solid rgba(0,255,65,0.1);
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+  }
+  .doe-core {
+    width: 50px; height: 50px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 35% 35%, rgba(0,255,65,0.5), rgba(0,100,30,0.3));
+    border: 2px solid rgba(0,255,65,0.4);
+    box-shadow: 0 0 20px rgba(0,255,65,0.3);
+    font-family: 'VT323', monospace;
+    font-size: 28px;
+    display: flex; align-items: center; justify-content: center;
+    color: rgba(0,255,65,0.8);
+  }
+  .leech {
+    position: absolute;
+    width: 18px; height: 18px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(100,0,150,0.9), rgba(50,0,80,0.6));
+    border: 1px solid rgba(180,100,255,0.6);
+    box-shadow: 0 0 8px rgba(150,0,200,0.4);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 9px;
+    cursor: pointer;
+    animation: leech-pulse 2s ease-in-out infinite;
+  }
+  @keyframes leech-pulse { 0%,100% { transform: scale(1); } 50% { transform: scale(1.15); } }
+  .leech-count { position: absolute; top: 6px; right: 6px; color: rgba(180,100,255,0.8); font-size: 10px; }
+
+  /* TICKER MOCKUP */
+  .ticker-wrap {
+    overflow: hidden;
+    white-space: nowrap;
+    border-top: 1px solid rgba(0,255,65,0.15);
+    border-bottom: 1px solid rgba(0,255,65,0.15);
+    padding: 5px 0;
+    background: rgba(0,255,65,0.03);
+  }
+  .ticker-inner {
+    display: inline-block;
+    animation: ticker-scroll 14s linear infinite;
+    font-size: 11px;
+    color: rgba(184,255,208,0.6);
+    letter-spacing: 1px;
+  }
+  @keyframes ticker-scroll { from { transform: translateX(100%); } to { transform: translateX(-100%); } }
+
+  /* RESONANCE BAR MOCKUP */
+  .resonance-wrap {
+    width: 100%;
+    height: 8px;
+    background: rgba(0,0,0,0.5);
+    border: 1px solid rgba(255,255,255,0.08);
+    position: relative;
+    overflow: hidden;
+  }
+  .resonance-fill {
+    height: 100%;
+    width: 65%;
+    background: linear-gradient(90deg, rgba(100,40,255,0.6), rgba(180,100,255,0.9), rgba(255,60,180,0.7));
+    box-shadow: 0 0 12px rgba(150,80,255,0.6);
+    animation: resonance-pulse 3s ease-in-out infinite;
+  }
+  @keyframes resonance-pulse { 0%,100% { opacity: 0.8; } 50% { opacity: 1; } }
+  .resonance-label {
+    font-size: 10px; color: rgba(180,100,255,0.7);
+    margin-bottom: 4px; letter-spacing: 1px;
+  }
+
+  /* NULL FRACTURE MOCKUP */
+  .shimmer-compare {
+    display: flex; gap: 12px;
+  }
+  .shimmer {
+    flex: 1; padding: 10px;
+    border: 1px solid; text-align: center;
+    font-family: 'VT323', monospace;
+    font-size: 14px;
+  }
+  .shimmer.golden { border-color: rgba(255,194,0,0.5); color: #ffc200; background: rgba(255,194,0,0.05); }
+  .shimmer.null { border-color: rgba(200,0,60,0.5); color: #ff3060; background: rgba(200,0,60,0.05); }
+  .shimmer-icon { font-size: 28px; display: block; margin-bottom: 6px; }
+  .shimmer-desc { font-size: 10px; opacity: 0.7; font-family: 'Share Tech Mono', monospace; }
+
+  .impact-badge {
+    display: inline-block;
+    font-size: 9px;
+    letter-spacing: 1px;
+    padding: 1px 6px;
+    margin-left: 8px;
+    vertical-align: middle;
+  }
+  .high { background: rgba(0,255,65,0.15); color: #00ff41; border: 1px solid rgba(0,255,65,0.3); }
+  .med { background: rgba(255,194,0,0.1); color: #ffc200; border: 1px solid rgba(255,194,0,0.3); }
+
+  .section-label {
+    font-size: 11px;
+    letter-spacing: 3px;
+    color: rgba(0,255,65,0.5);
+    margin-bottom: 14px;
+    border-bottom: 1px solid rgba(0,255,65,0.1);
+    padding-bottom: 6px;
+  }
+
+  .select-hint {
+    text-align: center;
+    color: rgba(184,255,208,0.35);
+    font-size: 11px;
+    letter-spacing: 2px;
+    margin-top: 20px;
+  }
+</style>
+</head>
+<body>
+
+<h1>[ DOE CLICKER — FEATURE PROPOSALS ]</h1>
+<p class="subtitle">INSPIRED BY COOKIE CLICKER — ADAPTED FOR THE VOID AESTHETIC — CLICK TO SELECT FEATURES YOU WANT</p>
+
+<div class="section-label">PROPOSED FEATURES — SELECT ALL THAT APPEAL TO YOU</div>
+
+<div class="feature-grid">
+
+  <!-- FEATURE 1: Active Buffs Bar -->
+  <div class="feature-card" data-choice="buffs" onclick="toggleFeature(this)">
+    <div class="feature-tag tag-ui">UI ENHANCEMENT</div>
+    <div class="feature-title">ACTIVE EFFECTS BAR <span class="impact-badge high">HIGH IMPACT</span></div>
+    <div class="feature-desc">
+      When Golden Doe activates, a visible buff bar appears below the HUD showing the active effect name, multiplier strength, and a draining countdown timer. You know exactly what's boosting you and for how long.
+    </div>
+    <div class="mockup-area">
+      <div style="font-size:10px; color: rgba(0,255,65,0.4); margin-bottom:6px; letter-spacing:1px;">ACTIVE EFFECTS ──────</div>
+      <div class="buff-bar">
+        <div class="buff-chip frenzy">
+          ◈ RESONANT FRENZY ×7
+          <div class="buff-chip-timer"></div>
+        </div>
+        <div class="buff-chip click">
+          ⚡ CLICK SURGE ×50
+          <div class="buff-chip-timer" style="animation-duration:4s"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FEATURE 2: Void Leeches -->
+  <div class="feature-card" data-choice="leeches" onclick="toggleFeature(this)">
+    <div class="feature-tag tag-mechanic">NEW MECHANIC</div>
+    <div class="feature-title">VOID LEECHES <span class="impact-badge high">HIGH IMPACT</span></div>
+    <div class="feature-desc">
+      Small void parasites slowly materialize on the Doe over time, absorbing 5% of incoming doe. Click them to pop — you get back 110% of what they absorbed. Letting them accumulate = big payout, but risky during surges.
+    </div>
+    <div class="mockup-area">
+      <div class="doe-area">
+        <div class="doe-core">◈</div>
+        <div class="leech" style="top:12px;left:32px">▲</div>
+        <div class="leech" style="bottom:10px;right:28px;animation-delay:-0.7s">▲</div>
+        <div class="leech" style="top:20px;right:18px;animation-delay:-1.2s">▲</div>
+        <div class="leech-count">3 LEECHES</div>
+      </div>
+      <div style="margin-top:8px; font-size:10px; color:rgba(180,100,255,0.6);">
+        Absorbed: 2,847 doe — Pop to claim 3,131 doe
+      </div>
+    </div>
+  </div>
+
+  <!-- FEATURE 3: Signal Ticker -->
+  <div class="feature-card" data-choice="ticker" onclick="toggleFeature(this)">
+    <div class="feature-tag tag-atmosphere">ATMOSPHERE</div>
+    <div class="feature-title">VOID SIGNAL TICKER <span class="impact-badge high">HIGH IMPACT</span></div>
+    <div class="feature-desc">
+      A persistent scrolling ticker below the HUD, cycling through lore whispers, game-state commentary ("the doe stirs…"), golden doe warnings, and milestone messages. Replaces the static quote under the Doe.
+    </div>
+    <div class="mockup-area">
+      <div class="ticker-wrap">
+        <div class="ticker-inner">
+          ◈ &nbsp;&nbsp; CONTACT WITH THE DOE INTENSIFIES &nbsp;&nbsp; ║ &nbsp;&nbsp; NULL APERTURE HUM DETECTED &nbsp;&nbsp; ║ &nbsp;&nbsp; 1,284 DOE ACCUMULATED THIS CYCLE &nbsp;&nbsp; ║ &nbsp;&nbsp; THE DOE DOES NOT SLEEP &nbsp;&nbsp; ║ &nbsp;&nbsp; VOID LEECH ACTIVITY: MODERATE &nbsp;&nbsp; ║
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FEATURE 4: Resonance Bar -->
+  <div class="feature-card" data-choice="resonance" onclick="toggleFeature(this)">
+    <div class="feature-tag tag-ui">UI ENHANCEMENT</div>
+    <div class="feature-title">VOID RESONANCE BAR <span class="impact-badge med">MEDIUM IMPACT</span></div>
+    <div class="feature-desc">
+      A thin iridescent bar below the Doe that fills as you unlock achievements. Each tier changes the bar's color and grants a passive DPS bonus. 35 achievements → 7 resonance tiers. Pure prestige, with small mechanical reward.
+    </div>
+    <div class="mockup-area">
+      <div class="resonance-label">VOID RESONANCE — TIER 4 / 7 "FRACTURED ECHO"  [+8% DPS]</div>
+      <div class="resonance-wrap">
+        <div class="resonance-fill"></div>
+      </div>
+      <div style="font-size:10px; color:rgba(184,255,208,0.35); margin-top:4px;">23 / 35 ACHIEVEMENTS • NEXT TIER AT 28</div>
+    </div>
+  </div>
+
+  <!-- FEATURE 5: Null Fracture -->
+  <div class="feature-card" data-choice="fracture" onclick="toggleFeature(this)">
+    <div class="feature-tag tag-mechanic">NEW MECHANIC</div>
+    <div class="feature-title">NULL FRACTURE EVENT <span class="impact-badge med">MEDIUM IMPACT</span></div>
+    <div class="feature-desc">
+      A second shimmer type — dark crimson instead of golden. Clicking it is a gamble: 60% chance of a huge windfall (×15 doe for 30s), 40% chance of a short penalty (-50% DPS for 15s). Unlocks after Act III.
+    </div>
+    <div class="mockup-area">
+      <div class="shimmer-compare">
+        <div class="shimmer golden">
+          <span class="shimmer-icon">✦</span>
+          GOLDEN DOE
+          <div class="shimmer-desc">Guaranteed bonus<br>Safe to click</div>
+        </div>
+        <div class="shimmer null">
+          <span class="shimmer-icon">✦</span>
+          NULL FRACTURE
+          <div class="shimmer-desc">60% windfall / 40% void drain<br>Unlocks Act III+</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FEATURE 6: Building Synergy Tooltips -->
+  <div class="feature-card" data-choice="tooltips" onclick="toggleFeature(this)">
+    <div class="feature-tag tag-ui">UI ENHANCEMENT</div>
+    <div class="feature-title">RICH CONDUIT TOOLTIPS <span class="impact-badge med">MEDIUM IMPACT</span></div>
+    <div class="feature-desc">
+      Hovering a conduit row shows a floating tooltip with: exact DPS contribution, % of total output, cost-efficiency rating, next-upgrade unlock threshold, and flavor lore snippet. No more clicking to expand.
+    </div>
+    <div class="mockup-area" style="font-size:10px;">
+      <div style="border:1px solid rgba(0,255,65,0.3); padding:8px; background:rgba(0,0,0,0.7); width:220px;">
+        <div style="color:#ffc200; font-family:'VT323',monospace; font-size:16px; margin-bottom:4px;">RESIDUE ECHO ×12</div>
+        <div style="color:rgba(0,255,65,0.6); margin-bottom:2px;">▸ 0.36/s base × 12 = 4.32/s</div>
+        <div style="color:rgba(0,200,255,0.6); margin-bottom:2px;">▸ 12.4% of total output</div>
+        <div style="color:rgba(180,100,255,0.6); margin-bottom:4px;">▸ Efficiency: ████░░ Good</div>
+        <div style="color:rgba(184,255,208,0.35); font-style:italic; font-size:9px;">"faint traces of something that once was signal"</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="select-hint">
+  ↑ CLICK CARDS TO SELECT FEATURES — MULTI-SELECT OK — CONFIRM IN TERMINAL WHEN DONE
+</div>
+
+<script>
+function toggleFeature(el) {
+  el.classList.toggle('selected');
+}
+</script>
+
+</body>
+</html>

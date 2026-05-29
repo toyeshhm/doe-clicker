@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=VT323&family=Share+Tech+Mono&display=swap');
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: #060810;
+    color: #b8ffd0;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 13px;
+    padding: 24px;
+  }
+  h1 { font-family: 'VT323', monospace; font-size: 30px; color: #00ff41; letter-spacing: 3px; text-shadow: 0 0 20px rgba(0,255,65,0.6); margin-bottom: 6px; }
+  .subtitle { color: rgba(184,255,208,0.45); font-size: 12px; margin-bottom: 28px; letter-spacing: 1px; }
+  .options { display: flex; flex-direction: column; gap: 16px; }
+  .option {
+    border: 1px solid rgba(0,255,65,0.2);
+    background: rgba(0,255,65,0.02);
+    padding: 18px 20px;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+  }
+  .option:hover { border-color: rgba(0,255,65,0.45); background: rgba(0,255,65,0.06); }
+  .option.selected { border-color: #00ff41; background: rgba(0,255,65,0.1); box-shadow: 0 0 20px rgba(0,255,65,0.12); }
+  .option.selected .letter { background: #00ff41; color: #000; }
+  .option.recommended { border-color: rgba(255,194,0,0.35); }
+  .option.recommended .option-tag { display: inline-block; }
+  .letter {
+    width: 32px; height: 32px; border: 1px solid rgba(0,255,65,0.4);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'VT323', monospace; font-size: 20px; color: #00ff41;
+    flex-shrink: 0; transition: all 0.2s;
+  }
+  .content { flex: 1; }
+  .option-title {
+    font-family: 'VT323', monospace; font-size: 20px; color: #ffc200;
+    letter-spacing: 1px; margin-bottom: 6px;
+  }
+  .option-tag {
+    display: none;
+    font-size: 10px; letter-spacing: 2px; padding: 1px 7px;
+    background: rgba(255,194,0,0.1); color: #ffc200;
+    border: 1px solid rgba(255,194,0,0.35);
+    margin-left: 10px; vertical-align: middle;
+  }
+  .option-desc { color: rgba(184,255,208,0.65); font-size: 11px; line-height: 1.65; margin-bottom: 10px; }
+  .phase-list { display: flex; gap: 8px; flex-wrap: wrap; }
+  .phase {
+    font-size: 10px; padding: 3px 10px; letter-spacing: 1px;
+    border: 1px solid rgba(0,200,255,0.25); color: rgba(0,200,255,0.7);
+  }
+  .phase.mech { border-color: rgba(255,80,80,0.25); color: rgba(255,120,120,0.7); }
+  .phase.atmo { border-color: rgba(180,100,255,0.25); color: rgba(180,100,255,0.7); }
+  .pros-cons { display: flex; gap: 16px; margin-top: 10px; font-size: 10px; }
+  .pros { color: rgba(0,255,65,0.6); }
+  .cons { color: rgba(255,100,100,0.6); }
+  .pros li::before { content: '+ '; }
+  .cons li::before { content: '- '; }
+  li { list-style: none; margin-bottom: 2px; }
+  .hint { text-align: center; color: rgba(184,255,208,0.3); font-size: 11px; letter-spacing: 2px; margin-top: 24px; }
+</style>
+</head>
+<body>
+
+<h1>[ IMPLEMENTATION APPROACH ]</h1>
+<p class="subtitle">HOW SHOULD WE BUILD ALL 6 FEATURES?</p>
+
+<div class="options">
+
+  <div class="option" data-choice="a" onclick="selectOption(this)">
+    <div class="letter">A</div>
+    <div class="content">
+      <div class="option-title">UI-FIRST, THEN MECHANICS</div>
+      <div class="option-desc">
+        Ship the 3 pure UI features first (ticker, buffs bar, resonance bar, rich tooltips) as one pass — no state changes needed, low risk, immediately visible.
+        Then add the 2 mechanics (void leeches, null fracture) in a second pass that wires in new state/reducer logic.
+      </div>
+      <div class="phase-list">
+        <div class="phase">Pass 1: Ticker + Buffs Bar + Resonance Bar + Tooltips</div>
+        <div class="phase mech">Pass 2: Void Leeches + Null Fracture</div>
+      </div>
+      <div class="pros-cons">
+        <ul class="pros"><li>Fastest visible results</li><li>Low regression risk</li></ul>
+        <ul class="cons"><li>Two separate passes</li><li>Slight context switching</li></ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="option recommended" data-choice="b" onclick="selectOption(this)">
+    <div class="letter">B</div>
+    <div class="content">
+      <div class="option-title">SHARED INFRASTRUCTURE, ONE PASS <span class="option-tag">RECOMMENDED</span></div>
+      <div class="option-desc">
+        Start by extending GameState with shared fields (activeBuffs[], leeches[], etc.), then implement all 6 features together. All state changes land once, all components are written fresh.
+        Slightly more upfront planning but no half-baked state during dev.
+      </div>
+      <div class="phase-list">
+        <div class="phase">Step 1: Extend types + reducer</div>
+        <div class="phase atmo">Step 2: Ticker + Resonance Bar</div>
+        <div class="phase">Step 3: Buffs Bar + Tooltips</div>
+        <div class="phase mech">Step 4: Void Leeches + Null Fracture</div>
+      </div>
+      <div class="pros-cons">
+        <ul class="pros"><li>Clean single state migration</li><li>Shared infrastructure (buffs used by leeches + fracture)</li><li>No backwards-compat hacks</li></ul>
+        <ul class="cons"><li>Requires full spec upfront</li></ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="option" data-choice="c" onclick="selectOption(this)">
+    <div class="letter">C</div>
+    <div class="content">
+      <div class="option-title">FEATURE-BY-FEATURE, SHIP EACH IMMEDIATELY</div>
+      <div class="option-desc">
+        Implement and verify each feature one at a time: ticker → resonance bar → buffs bar → tooltips → leeches → null fracture.
+        Each feature is runnable and tested before the next starts. Slowest but safest, with live feedback at each step.
+      </div>
+      <div class="phase-list">
+        <div class="phase atmo">1: Ticker</div>
+        <div class="phase">2: Resonance Bar</div>
+        <div class="phase">3: Buffs Bar</div>
+        <div class="phase">4: Tooltips</div>
+        <div class="phase mech">5: Leeches</div>
+        <div class="phase mech">6: Null Fracture</div>
+      </div>
+      <div class="pros-cons">
+        <ul class="pros"><li>Play-test after each</li><li>Easiest to catch issues</li></ul>
+        <ul class="cons"><li>State touched multiple times</li><li>Leeches/fracture may need buffs-bar state to already exist</li></ul>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="hint">↑ CLICK AN APPROACH — CONFIRM IN TERMINAL</div>
+
+<script>
+function selectOption(el) {
+  document.querySelectorAll('.option').forEach(o => o.classList.remove('selected'));
+  el.classList.add('selected');
+  if (window.recordChoice) window.recordChoice(el.dataset.choice, el.querySelector('.option-title').textContent.trim());
+}
+</script>
+</body>
+</html>

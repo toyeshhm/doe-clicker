@@ -7,6 +7,7 @@ import ConduitsPanel from './components/ConduitsPanel';
 import SignalLog from './components/SignalLog';
 import Codex from './components/Codex';
 import StatsPanel from './components/StatsPanel';
+import AchievementsPanel from './components/AchievementsPanel';
 import MilestoneModal from './components/MilestoneModal';
 import GoldenDoeEvent from './components/GoldenDoeEvent';
 import NullSurgeEvent from './components/NullSurgeEvent';
@@ -15,7 +16,7 @@ import IntroScreen from './components/IntroScreen';
 import Toasts from './components/Toasts';
 import { formatDoe, formatDps } from './utils/formatting';
 
-type Tab = 'upgrades' | 'codex' | 'stats';
+type Tab = 'upgrades' | 'codex' | 'stats' | 'achievements';
 
 /* Animated nebula color layer — blobs float and breathe behind all UI */
 function NebulaLayer() {
@@ -141,21 +142,31 @@ function GameUI() {
         <div className="flex flex-col flex-1 gap-2 overflow-hidden" style={{ minWidth: 0 }}>
           {/* Tab bar */}
           <div className="flex gap-1">
-            {(['upgrades', 'codex', 'stats'] as Tab[]).map(t => (
-              <button
-                key={t}
-                className="btn-terminal text-xs px-3 py-1"
-                style={tab === t ? { background: 'var(--phosphor)', color: '#000', textShadow: 'none', boxShadow: '0 0 16px rgba(0,255,65,0.5)' } : {}}
-                onClick={() => setTab(t)}
-              >
-                {t === 'upgrades' ? '[ UPGRADES ]' : t === 'codex' ? '[ CODEX ]' : '[ RECORDS ]'}
-              </button>
-            ))}
+            {(['upgrades', 'codex', 'achievements', 'stats'] as Tab[]).map(t => {
+              const labels: Record<Tab, string> = {
+                upgrades: '[ UPGRADES ]',
+                codex: '[ CODEX ]',
+                achievements: '[ ACHIEVEMENTS ]',
+                stats: '[ RECORDS ]',
+              };
+              const isActive = tab === t;
+              return (
+                <button
+                  key={t}
+                  className="btn-terminal text-xs px-3 py-1"
+                  style={isActive ? { background: 'var(--phosphor)', color: '#000', textShadow: 'none', boxShadow: '0 0 16px rgba(0,255,65,0.5)' } : {}}
+                  onClick={() => setTab(t)}
+                >
+                  {labels[t]}
+                </button>
+              );
+            })}
           </div>
 
           <div className="flex-1 overflow-hidden" style={{ minHeight: 0 }}>
             {tab === 'upgrades' && <UpgradesPanel />}
             {tab === 'codex' && <Codex />}
+            {tab === 'achievements' && <AchievementsPanel />}
             {tab === 'stats' && <StatsPanel />}
           </div>
 

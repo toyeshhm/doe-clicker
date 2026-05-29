@@ -1,0 +1,132 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - link "Got it!" [ref=e3] [cursor=pointer]:
+      - /url: "#null"
+    - paragraph [ref=e4]:
+      - text: Unsurprisingly, this website uses cookies for ads and traffic analysis.
+      - link "Learn more" [ref=e5] [cursor=pointer]:
+        - /url: //orteil.dashnet.org/cookieconsentpolicy.html
+  - generic [ref=e6]:
+    - generic [ref=e7]:
+      - link "DashNet" [ref=e9] [cursor=pointer]:
+        - /url: //dashnet.org
+      - generic [ref=e10]:
+        - link "Cookie Clicker" [ref=e11] [cursor=pointer]:
+          - /url: ""
+        - text: ™ ©
+        - link "Orteil" [ref=e12] [cursor=pointer]:
+          - /url: //orteil.dashnet.org
+        - text: ", 2026"
+      - link "tumblr" [ref=e14] [cursor=pointer]:
+        - /url: https://orteil42.tumblr.com
+      - link "bluesky" [ref=e16] [cursor=pointer]:
+        - /url: https://orteil42.bsky.social
+      - link "Discord" [ref=e18] [cursor=pointer]:
+        - /url: https://discordapp.com/invite/cookie
+      - link "Merch!" [ref=e20] [cursor=pointer]:
+        - /url: https://www.redbubble.com/people/dashnet
+      - generic [ref=e22]: "89"
+      - generic [ref=e23]: Change language
+      - link "Steam" [ref=e25] [cursor=pointer]:
+        - /url: https://store.steampowered.com/app/1454400/Cookie_Clicker/
+        - img [ref=e26]
+        - text: Steam
+      - link "Android" [ref=e28] [cursor=pointer]:
+        - /url: https://play.google.com/store/apps/details?id=org.dashnet.cookieclicker
+        - img [ref=e29]
+        - text: Android
+      - link "Consoles" [ref=e31] [cursor=pointer]:
+        - /url: https://cookieclicker.com/
+      - link "Cookie Clicker clicker by Fangamer" [ref=e33] [cursor=pointer]:
+        - /url: https://fanga.me/r/cookie-clicker-collection
+        - img [ref=e34]
+        - text: Cookie Clicker clicker
+        - generic [ref=e35]: by Fangamer
+      - generic [ref=e36] [cursor=pointer]:
+        - generic [ref=e37]: Other versions
+        - generic:
+          - link "Try the beta!" [ref=e39]:
+            - /url: https://orteil.dashnet.org/cookieclicker/beta
+          - link "v.2.052 (2023)" [ref=e41]:
+            - /url: https://orteil.dashnet.org/cookieclicker/v2052
+          - link "v.1.0466 (2014)" [ref=e43]:
+            - /url: https://orteil.dashnet.org/cookieclicker/v10466
+          - link "Classic (2013)" [ref=e45]:
+            - /url: https://orteil.dashnet.org/experiments/cookie
+    - generic [ref=e46]:
+      - generic [ref=e47]: v. 2.058
+      - generic [ref=e50]:
+        - generic:
+          - text: 0 cookies
+          - generic: "per second: 0"
+        - generic [ref=e53] [cursor=pointer]: Hella Ninja's bakery
+        - button [ref=e54] [cursor=pointer]
+      - generic [ref=e57]:
+        - generic [ref=e58]:
+          - generic [ref=e60] [cursor=pointer]: Options
+          - generic [ref=e62] [cursor=pointer]: Stats
+          - generic [ref=e64] [cursor=pointer]: Info
+          - generic [ref=e66] [cursor=pointer]: Legacy
+          - generic [ref=e69]:
+            - generic [ref=e70]: You feel like making cookies. But nobody wants to eat your cookies.
+            - generic [ref=e71]: You feel like making cookies. But nobody wants to eat your cookies.
+        - generic [ref=e76]: "Muted:"
+      - generic [ref=e78]:
+        - generic [ref=e79]:
+          - insertion [ref=e80]:
+            - iframe [ref=e82]:
+              - generic [active] [ref=f24e1]:
+                - generic [ref=f24e6]:
+                  - generic [ref=f24e7]:
+                    - generic "SilverEdge Safe Search" [ref=f24e9]:
+                      - link "Continue to Extension" [ref=f24e10] [cursor=pointer]:
+                        - /url: https://www.googleadservices.com/pagead/aclk?sa=L&ai=CIOjg9sUYat-GMqPD0_wPu-_EmAmK55mKhwHp7qGDoRXkut69tEcQASCBn9GkAWDJxvKM5KTAE6AB88W3xkHIAQGpAkHAQ9-aSqo-qAMByAPLBKoE7AFP0BoCZwt8J7nldYsDPV7L7DgnfWj4D8RVUw6BNAXO8kCQC7l3dzmcDB1rPadI6V7BF_8gdlEoloitYlYp6llb0zgp4swV1SELkEAjmacm0PaPy3lzEqLgebm_UvU3k-3CdqX-L1gyn4ehP4eg8MsH44WrseAHzhY0xJtmTO_wt9nx3xN4WA8BP7GXrDThldpfBc_Dh9IGq47nHfmgPCtZbDTcQXGDZZgz3M6c63q1Z48GsEPhyp5C35OkZJg0zY8IluwAcL8a30PYMbzl0eswsIUPBClKsMsX_8CBqOstAbqG8EXsDE7Qx2HJCMAEj_Dc2bgFiAW6x7jyVYAH8_2HphyoB6fMsQKoB6a-G6gHzM6xAqgH89EbqAeW2BuoB6qbsQKoB47OG6gHk9gbqAfw4BuoB-6WsQKoB_6esQKoB6--sQKoB9XJG6gH2baxAqgHmgaoB_-esQKoB9-fsQKoB_jCsQKoB_vCsQLYBwHSCDMIgGEQARifAzIIioKAgICAgAg6D4BAgMCAgICAqIACqIOQEEi9_cE6WLvhxJWI3ZQDYAGxCSyBPx4RH0LOgAoBmAsByAsBqg0CVVPIDQHqDRMI9t_FlYjdlAMVo-GUCR27NxGT8A0CiA4J2BMMiBQD0BUByhYCCgD4FgGAFwGyFxAYASoKNDYwMzA5MzY3OFAGuhcCOAGqGBcJAAAAAIHWO0ESCjQ2MDMwOTM2NzgYAbIYCRIC3mgYASIBANAYAcIZAggB&ae=1&gclid=EAIaIQobChMI39nFlYjdlAMVo-GUCR27NxGTEAEYASAAEgICMvD_BwE&num=1&cid=CAQSjQIABaugfZ2oeAP8FiadGaAanov1gG_hD-FdUidhjz23_cEiHj4LqAlSdKjYtKsrEk4UmGMubBdV0fKPS45NZOr4LY5YKdZIdjiSucZROtfS61d3seUQUzLEjm1rWadtNpOqCHtf_QxWdAFbUwUVoSTUwEgs4LyVDQG9lyF2Xmz-eP-NRHZ6zL8fqhewpNSgurtdePbJGaWgnStGbcTCgZRq3iiL1qaY3yd01pcDY6J8qyisIzvzQom-4f_lsMirq6qlwfr52-mvFQZltskbysNaAd6PoyVG-k1RbKY6xz0UOmti_R47cokBhSuhJdqU6ZHyI7S3WaciiCOP3lnvJcqOrafLQIPwYEDAXEna4xgB&sig=AOD64_2Sc4lnmAiQuFeIiHNxdkHHYhUwdA&client=ca-pub-5622691057838054&rf=1&nb=0&adurl=https://safesuggestsearch.com/%3FVxLIqirwYFdaSVQO%26gad_source%3D5%26gad_campaignid%3D23057015738%26gclid%3DEAIaIQobChMI39nFlYjdlAMVo-GUCR27NxGTEAEYASAAEgICMvD_BwE
+                        - text: Continue to
+                        - text: Extension
+                    - generic [ref=f24e11]:
+                      - link "Continue" [ref=f24e13] [cursor=pointer]:
+                        - /url: https://www.googleadservices.com/pagead/aclk?sa=L&ai=CIOjg9sUYat-GMqPD0_wPu-_EmAmK55mKhwHp7qGDoRXkut69tEcQASCBn9GkAWDJxvKM5KTAE6AB88W3xkHIAQGpAkHAQ9-aSqo-qAMByAPLBKoE7AFP0BoCZwt8J7nldYsDPV7L7DgnfWj4D8RVUw6BNAXO8kCQC7l3dzmcDB1rPadI6V7BF_8gdlEoloitYlYp6llb0zgp4swV1SELkEAjmacm0PaPy3lzEqLgebm_UvU3k-3CdqX-L1gyn4ehP4eg8MsH44WrseAHzhY0xJtmTO_wt9nx3xN4WA8BP7GXrDThldpfBc_Dh9IGq47nHfmgPCtZbDTcQXGDZZgz3M6c63q1Z48GsEPhyp5C35OkZJg0zY8IluwAcL8a30PYMbzl0eswsIUPBClKsMsX_8CBqOstAbqG8EXsDE7Qx2HJCMAEj_Dc2bgFiAW6x7jyVYAH8_2HphyoB6fMsQKoB6a-G6gHzM6xAqgH89EbqAeW2BuoB6qbsQKoB47OG6gHk9gbqAfw4BuoB-6WsQKoB_6esQKoB6--sQKoB9XJG6gH2baxAqgHmgaoB_-esQKoB9-fsQKoB_jCsQKoB_vCsQLYBwHSCDMIgGEQARifAzIIioKAgICAgAg6D4BAgMCAgICAqIACqIOQEEi9_cE6WLvhxJWI3ZQDYAGxCSyBPx4RH0LOgAoBmAsByAsBqg0CVVPIDQHqDRMI9t_FlYjdlAMVo-GUCR27NxGT8A0CiA4J2BMMiBQD0BUByhYCCgD4FgGAFwGyFxAYASoKNDYwMzA5MzY3OFAGuhcCOAGqGBcJAAAAAIHWO0ESCjQ2MDMwOTM2NzgYAbIYCRIC3mgYASIBANAYAcIZAggB&ae=1&gclid=EAIaIQobChMI39nFlYjdlAMVo-GUCR27NxGTEAEYASAAEgICMvD_BwE&num=1&cid=CAQSjQIABaugfZ2oeAP8FiadGaAanov1gG_hD-FdUidhjz23_cEiHj4LqAlSdKjYtKsrEk4UmGMubBdV0fKPS45NZOr4LY5YKdZIdjiSucZROtfS61d3seUQUzLEjm1rWadtNpOqCHtf_QxWdAFbUwUVoSTUwEgs4LyVDQG9lyF2Xmz-eP-NRHZ6zL8fqhewpNSgurtdePbJGaWgnStGbcTCgZRq3iiL1qaY3yd01pcDY6J8qyisIzvzQom-4f_lsMirq6qlwfr52-mvFQZltskbysNaAd6PoyVG-k1RbKY6xz0UOmti_R47cokBhSuhJdqU6ZHyI7S3WaciiCOP3lnvJcqOrafLQIPwYEDAXEna4xgB&sig=AOD64_2Sc4lnmAiQuFeIiHNxdkHHYhUwdA&client=ca-pub-5622691057838054&rf=1&nb=7&adurl=https://safesuggestsearch.com/%3FVxLIqirwYFdaSVQO%26gad_source%3D5%26gad_campaignid%3D23057015738%26gclid%3DEAIaIQobChMI39nFlYjdlAMVo-GUCR27NxGTEAEYASAAEgICMvD_BwE
+                      - link [ref=f24e14] [cursor=pointer]:
+                        - /url: https://www.googleadservices.com/pagead/aclk?sa=L&ai=CIOjg9sUYat-GMqPD0_wPu-_EmAmK55mKhwHp7qGDoRXkut69tEcQASCBn9GkAWDJxvKM5KTAE6AB88W3xkHIAQGpAkHAQ9-aSqo-qAMByAPLBKoE7AFP0BoCZwt8J7nldYsDPV7L7DgnfWj4D8RVUw6BNAXO8kCQC7l3dzmcDB1rPadI6V7BF_8gdlEoloitYlYp6llb0zgp4swV1SELkEAjmacm0PaPy3lzEqLgebm_UvU3k-3CdqX-L1gyn4ehP4eg8MsH44WrseAHzhY0xJtmTO_wt9nx3xN4WA8BP7GXrDThldpfBc_Dh9IGq47nHfmgPCtZbDTcQXGDZZgz3M6c63q1Z48GsEPhyp5C35OkZJg0zY8IluwAcL8a30PYMbzl0eswsIUPBClKsMsX_8CBqOstAbqG8EXsDE7Qx2HJCMAEj_Dc2bgFiAW6x7jyVYAH8_2HphyoB6fMsQKoB6a-G6gHzM6xAqgH89EbqAeW2BuoB6qbsQKoB47OG6gHk9gbqAfw4BuoB-6WsQKoB_6esQKoB6--sQKoB9XJG6gH2baxAqgHmgaoB_-esQKoB9-fsQKoB_jCsQKoB_vCsQLYBwHSCDMIgGEQARifAzIIioKAgICAgAg6D4BAgMCAgICAqIACqIOQEEi9_cE6WLvhxJWI3ZQDYAGxCSyBPx4RH0LOgAoBmAsByAsBqg0CVVPIDQHqDRMI9t_FlYjdlAMVo-GUCR27NxGT8A0CiA4J2BMMiBQD0BUByhYCCgD4FgGAFwGyFxAYASoKNDYwMzA5MzY3OFAGuhcCOAGqGBcJAAAAAIHWO0ESCjQ2MDMwOTM2NzgYAbIYCRIC3mgYASIBANAYAcIZAggB&ae=1&gclid=EAIaIQobChMI39nFlYjdlAMVo-GUCR27NxGTEAEYASAAEgICMvD_BwE&num=1&cid=CAQSjQIABaugfZ2oeAP8FiadGaAanov1gG_hD-FdUidhjz23_cEiHj4LqAlSdKjYtKsrEk4UmGMubBdV0fKPS45NZOr4LY5YKdZIdjiSucZROtfS61d3seUQUzLEjm1rWadtNpOqCHtf_QxWdAFbUwUVoSTUwEgs4LyVDQG9lyF2Xmz-eP-NRHZ6zL8fqhewpNSgurtdePbJGaWgnStGbcTCgZRq3iiL1qaY3yd01pcDY6J8qyisIzvzQom-4f_lsMirq6qlwfr52-mvFQZltskbysNaAd6PoyVG-k1RbKY6xz0UOmti_R47cokBhSuhJdqU6ZHyI7S3WaciiCOP3lnvJcqOrafLQIPwYEDAXEna4xgB&sig=AOD64_2Sc4lnmAiQuFeIiHNxdkHHYhUwdA&client=ca-pub-5622691057838054&rf=1&nb=8&adurl=https://safesuggestsearch.com/%3FVxLIqirwYFdaSVQO%26gad_source%3D5%26gad_campaignid%3D23057015738%26gclid%3DEAIaIQobChMI39nFlYjdlAMVo-GUCR27NxGTEAEYASAAEgICMvD_BwE
+                        - img [ref=f24e15]
+                  - generic "SilverEdge Safe Search" [ref=f24e17]:
+                    - link "SilverEdge Safe Search" [ref=f24e18] [cursor=pointer]:
+                      - /url: https://www.googleadservices.com/pagead/aclk?sa=L&ai=CIOjg9sUYat-GMqPD0_wPu-_EmAmK55mKhwHp7qGDoRXkut69tEcQASCBn9GkAWDJxvKM5KTAE6AB88W3xkHIAQGpAkHAQ9-aSqo-qAMByAPLBKoE7AFP0BoCZwt8J7nldYsDPV7L7DgnfWj4D8RVUw6BNAXO8kCQC7l3dzmcDB1rPadI6V7BF_8gdlEoloitYlYp6llb0zgp4swV1SELkEAjmacm0PaPy3lzEqLgebm_UvU3k-3CdqX-L1gyn4ehP4eg8MsH44WrseAHzhY0xJtmTO_wt9nx3xN4WA8BP7GXrDThldpfBc_Dh9IGq47nHfmgPCtZbDTcQXGDZZgz3M6c63q1Z48GsEPhyp5C35OkZJg0zY8IluwAcL8a30PYMbzl0eswsIUPBClKsMsX_8CBqOstAbqG8EXsDE7Qx2HJCMAEj_Dc2bgFiAW6x7jyVYAH8_2HphyoB6fMsQKoB6a-G6gHzM6xAqgH89EbqAeW2BuoB6qbsQKoB47OG6gHk9gbqAfw4BuoB-6WsQKoB_6esQKoB6--sQKoB9XJG6gH2baxAqgHmgaoB_-esQKoB9-fsQKoB_jCsQKoB_vCsQLYBwHSCDMIgGEQARifAzIIioKAgICAgAg6D4BAgMCAgICAqIACqIOQEEi9_cE6WLvhxJWI3ZQDYAGxCSyBPx4RH0LOgAoBmAsByAsBqg0CVVPIDQHqDRMI9t_FlYjdlAMVo-GUCR27NxGT8A0CiA4J2BMMiBQD0BUByhYCCgD4FgGAFwGyFxAYASoKNDYwMzA5MzY3OFAGuhcCOAGqGBcJAAAAAIHWO0ESCjQ2MDMwOTM2NzgYAbIYCRIC3mgYASIBANAYAcIZAggB&ae=1&gclid=EAIaIQobChMI39nFlYjdlAMVo-GUCR27NxGTEAEYASAAEgICMvD_BwE&num=1&cid=CAQSjQIABaugfZ2oeAP8FiadGaAanov1gG_hD-FdUidhjz23_cEiHj4LqAlSdKjYtKsrEk4UmGMubBdV0fKPS45NZOr4LY5YKdZIdjiSucZROtfS61d3seUQUzLEjm1rWadtNpOqCHtf_QxWdAFbUwUVoSTUwEgs4LyVDQG9lyF2Xmz-eP-NRHZ6zL8fqhewpNSgurtdePbJGaWgnStGbcTCgZRq3iiL1qaY3yd01pcDY6J8qyisIzvzQom-4f_lsMirq6qlwfr52-mvFQZltskbysNaAd6PoyVG-k1RbKY6xz0UOmti_R47cokBhSuhJdqU6ZHyI7S3WaciiCOP3lnvJcqOrafLQIPwYEDAXEna4xgB&sig=AOD64_2Sc4lnmAiQuFeIiHNxdkHHYhUwdA&client=ca-pub-5622691057838054&rf=1&nb=1&adurl=https://safesuggestsearch.com/%3FVxLIqirwYFdaSVQO%26gad_source%3D5%26gad_campaignid%3D23057015738%26gclid%3DEAIaIQobChMI39nFlYjdlAMVo-GUCR27NxGTEAEYASAAEgICMvD_BwE
+                - img [ref=f24e22] [cursor=pointer]
+                - button [ref=f24e25] [cursor=pointer]:
+                  - img [ref=f24e26]
+                - iframe
+          - generic [ref=e83]: ⮝ Sponsored link ⮝
+        - generic [ref=e84]:
+          - generic [ref=e85]: Store
+          - generic [ref=e87]:
+            - generic [ref=e88]:
+              - generic [ref=e89] [cursor=pointer]: Buy
+              - generic [ref=e90] [cursor=pointer]: Sell
+              - generic [ref=e91] [cursor=pointer]: "1"
+              - generic [ref=e92] [cursor=pointer]: "10"
+              - generic [ref=e93] [cursor=pointer]: "100"
+            - generic [ref=e97] [cursor=pointer]:
+              - generic [ref=e98]: "???"
+              - text: "15"
+            - generic [ref=e102] [cursor=pointer]:
+              - generic [ref=e103]: "???"
+              - text: "100"
+        - generic [ref=e105]:
+          - generic [ref=e106]: ⮟ Sponsored links ⮟
+          - generic [ref=e108]:
+            - insertion [ref=e109]:
+              - iframe [ref=e111]:
+                - generic [active] [ref=f25e1]:
+                  - generic [ref=f25e3]:
+                    - link:
+                      - /url: https://www.googleadservices.com/pagead/aclk?sa=L&ai=CMteC9sUYatfMOO6PkNQPzKGAwASP8NSohwGu3Om46hWCpL3tlg4QASCBn9GkAWDJxvKM5KTAE6ABsZXWxCrIAQKoAwHIA8kEqgT0AU_QqE181g5t_i_Va_2zFsEtvmUok3DCfA2zSD755N7owKWVKWf_XLypQh7DTbK_m4yYcCcXKHbHvRpfIBAHxFY4jCQatNN72kK_x2FrzrFvSOIdp1LZUr4xryYRolCvOF10vytguMAmYnJU9BkmVS7C7eitlQdZJfpzUsHI7H7EfuJuYE9FM1u00xTLSdETG7ZawQenn4IefGFaTTAsu60_7jHo0Ef4-D_ltQW1s9mdCZx-roQ2HWvRiWz_L1IYY8yTLcbGPXuvHRu6Gd7959YE9ARK5XbARpLgfWQHVV6Vnl2G6byAmtYUNiMLzOAsHbjF4YfABKuD6MPkBYgFhabbwFigBgKAB7HNpqQFqAenzLECqAfi2LECqAemvhuoB8zOsQKoB_PRG6gHltgbqAeqm7ECqAeOzhuoB5PYG6gH8OAbqAfulrECqAf-nrECqAevvrECqAfVyRuoB9m2sQKoB5oGqAf_nrECqAffn7ECqAf4wrECqAf7wrEC2AcB0ggzCIBhEAEYnwMyCIqCgICAgIAIOg-AQIDAgICAgKiAAqiDkBBIvf3BOlipssuViN2UA2ABsQkq1oAPCKcRZoAKAZgLAcgLAaIMA5ABAaoNAlVTyA0B6g0TCLKlzJWI3ZQDFe4HhAQdzBAASPANAogOCdgTDNAVAZgWAcoWAgoA-BYBgBcBshcQGAEqCjUyNTc2OTk3OTNQBroXAjgBqhgXCQAAAACYRQNBEgo1MjU3Njk5NzkzGAGyGAkSArBTGAIiAQDQGAHCGQIIAQ&ae=1&gclid=EAIaIQobChMI15_MlYjdlAMV7geEBB3MEABIEAEYASAAEgKTvfD_BwE&num=1&cid=CAQSjQIABaugfapD8TiFfAghswHM9y8q-YxCLXTTr_hhK2OJrMROy88ckZ4-PhiBbsclNxJwjHF4sf-bPqfHw0AtjZyrpaRfuNgEnCMOlov6xzYa3AmpLqx8-3zTG0ffuRw06AbY8GdO6lySjo9_ysfc4xNqATalYV6TDiD_7uggYnScGFAyQjBT5JsUo2CMSVT7De6IpkprKL0hrOLvn5c-JyDyAmSTg4XmxvzwAXQk2AWNoQHV3BP7KK0zRHuG32AceW_XgCm-urnFnDmcU_f8DeW-tuAZCVa1acj7I24FCKR9l103BIof2GwuW_9W9ugH7bj3y7rRTEb3szcUlSL0CioG23pxYn5AARMt5-t9LhgB&sig=AOD64_0C7yM7bjJtKT8c8iJjJc89pG9xgQ&client=ca-pub-5622691057838054&rf=2&nb=2&adurl=https://www.enjoysgame.com/extension%3Fgad_campaignid%3D23758033669%26gad_creative%3D806059756540%26gad_source%3D5%26gad_campaignid%3D23758033669%26gclid%3DEAIaIQobChMI15_MlYjdlAMV7geEBB3MEABIEAEYASAAEgKTvfD_BwE
+                    - img [ref=f25e7] [cursor=pointer]
+                    - button [ref=f25e10] [cursor=pointer]:
+                      - img [ref=f25e11]
+                  - iframe
+            - iframe [ref=e114]:
+              - link "Play Clicker Heroes the Idle RPG" [ref=f21e5] [cursor=pointer]:
+                - /url: https://serve.app.playsaurus.com/ad-creatives/9e8ad354-4a0d-4c1c-a01f-22476e9b25b0/click?impression=019e70c5-4b03-739a-9639-0cca776aa0f1
+            - link "AdventureQuest Worlds" [ref=e117] [cursor=pointer]:
+              - /url: http://www.aq.com/landing/cookie/?utm_campaign=AQW_CookieClicker&utm_source=CookieClicker

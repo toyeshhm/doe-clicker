@@ -82,6 +82,21 @@ export interface ToastMessage {
   color?: string;
 }
 
+export interface ActiveBuff {
+  id: string;
+  label: string;           // e.g. "RESONANT FRENZY ×7"
+  type: 'frenzy' | 'click-surge' | 'windfall' | 'void-flush' | 'null-drain';
+  dpsMultiplier?: number;  // multiplied into earned doe each tick (undefined = display-only)
+  expiresAt: number;       // absolute Date.now() timestamp
+}
+
+export interface VoidLeech {
+  id: string;
+  angle: number;           // degrees 0–360, polar position around Doe SVG center
+  attachedAt: number;      // timestamp
+  absorbed: number;        // doe drained so far; player gets 1.1× on pop
+}
+
 export interface GameState {
   doe: number;
   totalDoeEver: number;
@@ -110,6 +125,8 @@ export interface GameState {
   stareStacks: number;
   playerChoice?: 'offer' | 'pull';
   lastSaved: number;
+  activeBuffs: ActiveBuff[];
+  leeches: VoidLeech[];
 }
 
 export type GameAction =
@@ -130,4 +147,8 @@ export type GameAction =
   | { type: 'LOAD_STATE'; state: GameState }
   | { type: 'RESET' }
   | { type: 'APPLY_STARE' }
-  | { type: 'DOE_SPEAKS_BONUS' };
+  | { type: 'DOE_SPEAKS_BONUS' }
+  | { type: 'APPLY_BUFF'; buff: ActiveBuff }
+  | { type: 'SPAWN_LEECH'; leech: VoidLeech }
+  | { type: 'POP_LEECH'; leechId: string }
+  | { type: 'CATCH_NULL_FRACTURE'; bonus: boolean };

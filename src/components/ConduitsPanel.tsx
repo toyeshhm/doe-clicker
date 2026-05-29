@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useGame } from '../store/GameContext';
 import { CONDUITS } from '../data/conduits';
+import { UPGRADES } from '../data/upgrades';
 import type { Conduit } from '../types';
 import { conduitCostBulk, maxAffordable, formatDoe, formatDps } from '../utils/formatting';
 import { playPurchase } from '../utils/audio';
@@ -10,6 +11,7 @@ type BulkMode = 1 | 10 | 100 | 'max';
 export default function ConduitsPanel() {
   const [bulkMode, setBulkMode] = useState<BulkMode>(1);
   const [expanded, setExpanded] = useState<string | null>(null);
+  const [tooltip, setTooltip] = useState<{ id: string; rect: DOMRect } | null>(null);
   const { state, dispatch, addToast } = useGame();
   const isAct3Plus = state.totalDoeEver >= 1e7;
   const totalDps = state.doePerSecond;
@@ -28,6 +30,66 @@ export default function ConduitsPanel() {
     dispatch({ type: 'BUY_CONDUIT', conduitId: c.id, quantity: qty, cost });
     addToast(`[ ${c.name.toUpperCase()} ×${qty} ]`, 'phosphor');
     playPurchase();
+  };
+
+  const renderTooltip = () => {
+    if (!tooltip) return null;
+    const c = CONDUITS.find(x => x.id === tooltip.id);
+    if (!c) return null;
+    const owned = state.conduits[c.id] || 0;
+    if (owned === 0) return null;
+
+    const conduitDps = c.baseDps * owned;
+    const pct = totalDps > 0 ? ((conduitDps / totalDps) * 100).toFixed(1) : '0.0';
+    const effBlocks = Math.min(5, Math.ceil((conduitDps / Math.max(totalDps, 1)) * 25));
+    const effStr = '█'.repeat(effBlocks) + '░'.repeat(5 - effBlocks);
+
+    // Find next upgrade that requires this conduit and is not yet purchased
+    const nextUp = UPGRADES.find(u =>
+      u.requires?.conduit === c.id &&
+      !state.upgrades.has(u.id) &&
+      (state.conduits[c.id] || 0) < u.requires.count
+    );
+
+    const top = Math.min(tooltip.rect.top, window.innerHeight - 180);
+
+    return (
+      <div
+        style={{
+          position: 'fixed',
+          top,
+          right: window.innerWidth - tooltip.rect.left + 6,
+          width: 220,
+          background: 'rgba(4,8,14,0.97)',
+          border: '1px solid rgba(0,255,65,0.3)',
+          padding: '10px 12px',
+          zIndex: 60,
+          pointerEvents: 'none',
+          boxShadow: '0 0 20px rgba(0,255,65,0.08)',
+        }}
+      >
+        <div className="vt323" style={{ fontSize: 17, color: 'var(--amber)', marginBottom: 6 }}>
+          {c.name.toUpperCase()} ×{owned}
+        </div>
+        <div style={{ fontSize: 10, color: 'rgba(0,255,65,0.65)', marginBottom: 2 }}>
+          ▸ {c.baseDps}/s × {owned} = {conduitDps.toFixed(2)}/s
+        </div>
+        <div style={{ fontSize: 10, color: 'rgba(0,200,255,0.65)', marginBottom: 2 }}>
+          ▸ {pct}% of total output
+        </div>
+        <div style={{ fontSize: 10, color: 'rgba(180,100,255,0.65)', marginBottom: 6 }}>
+          ▸ Efficiency: <span style={{ letterSpacing: 2 }}>{effStr}</span>
+        </div>
+        {nextUp && (
+          <div style={{ fontSize: 10, color: 'rgba(255,194,0,0.6)', marginBottom: 6 }}>
+            ▸ Upgrade unlocks at {nextUp.requires!.count} owned
+          </div>
+        )}
+        <div style={{ fontSize: 9, color: 'rgba(184,255,208,0.35)', fontStyle: 'italic', lineHeight: 1.5 }}>
+          {c.description}
+        </div>
+      </div>
+    );
   };
 
   return (
@@ -77,6 +139,8 @@ export default function ConduitsPanel() {
                   if (affordable) handleBuy(c);
                   setExpanded(isExpanded ? null : c.id);
                 }}
+                onMouseEnter={(e) => setTooltip({ id: c.id, rect: (e.currentTarget as HTMLElement).getBoundingClientRect() })}
+                onMouseLeave={() => setTooltip(null)}
               >
                 {/* Icon box */}
                 <div className="conduit-icon-box">
@@ -155,6 +219,7 @@ export default function ConduitsPanel() {
           );
         })}
       </div>
+      {renderTooltip()}
     </div>
   );
 }

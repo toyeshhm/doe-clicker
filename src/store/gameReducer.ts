@@ -1,4 +1,4 @@
-import type { GameState, GameAction, SignalEntry } from '../types';
+import type { GameState, GameAction, SignalEntry, ActiveBuff } from '../types';
 import { CONDUIT_MAP } from '../data/conduits';
 import { UPGRADE_MAP } from '../data/upgrades';
 
@@ -37,7 +37,9 @@ export function computeDps(state: GameState): number {
   const permBonus = 1 + state.permanentDpsBonus;
   const stareBonus = 1 + state.stareStacks * 0.05;
   const fragBonus = 1 + state.cosmicFragments * 0.02;
-  return dps * permBonus * stareBonus * fragBonus;
+  const resonanceTier = Math.min(7, Math.floor(state.achievements.size / 5));
+  const resonanceBonus = 1 + resonanceTier * 0.02;
+  return dps * permBonus * stareBonus * fragBonus * resonanceBonus;
 }
 
 export function computeClickValue(state: GameState): number {
@@ -83,6 +85,8 @@ export const INITIAL_STATE: GameState = {
   permanentClickBonus: 0,
   stareStacks: 0,
   lastSaved: Date.now(),
+  activeBuffs: [],
+  leeches: [],
 };
 
 function addSignal(state: GameState, entry: Omit<SignalEntry, 'id' | 'timestamp'>): GameState {
@@ -111,19 +115,75 @@ export function gameReducer(state: GameState, action: GameAction): GameState {
     }
 
     case 'TICK': {
+      const now = Date.now();
+      // Expire old buffs
+      const activeBuffs = state.activeBuffs.filter(b => b.expiresAt > now);
+
+      // Compute active buff DPS multiplier (only buffs with dpsMultiplier, e.g. null fracture)
+      let buffDpsMult = 1;
+      for (const buff of activeBuffs) {
+        if (buff.dpsMultiplier !== undefined) buffDpsMult *= buff.dpsMultiplier;
+      }
+
       const dps = computeDps(state);
-      const earned = dps * (action.delta / 1000) * (action.goldenMultiplier ?? 1);
-      const newState = {
+
+      // Drain leeches (5% of raw DPS per leech per second, independent of buffs)
+      let totalLeechDrain = 0;
+      const leeches = state.leeches.map(l => {
+        const drain = dps * 0.05 * (action.delta / 1000);
+        totalLeechDrain += drain;
+        return { ...l, absorbed: l.absorbed + drain };
+      });
+
+      const earned = dps * (action.delta / 1000) * (action.goldenMultiplier ?? 1) * buffDpsMult;
+      const doeDelta = earned - totalLeechDrain;
+      const newDoe = Math.max(0, state.doe + doeDelta);
+      // Only count earned (not leech drain) toward totalDoeEver
+      const actualEarned = Math.max(0, earned);
+
+      return {
         ...state,
-        doe: state.doe + earned,
-        totalDoeEver: state.totalDoeEver + earned,
-        totalDoeAllTime: state.totalDoeAllTime + earned,
+        activeBuffs,
+        leeches,
+        doe: newDoe,
+        totalDoeEver: state.totalDoeEver + actualEarned,
+        totalDoeAllTime: state.totalDoeAllTime + actualEarned,
         doePerSecond: dps,
         doePerClick: computeClickValue(state),
         cycleTimePlayed: state.cycleTimePlayed + action.delta / 1000,
         totalTimePlayed: state.totalTimePlayed + action.delta / 1000,
       };
-      return newState;
+    }
+
+    case 'APPLY_BUFF': {
+      // Replace existing buff of same type (no stacking, refresh duration)
+      const filtered = state.activeBuffs.filter(b => b.type !== action.buff.type);
+      return { ...state, activeBuffs: [...filtered, action.buff] };
+    }
+
+    case 'SPAWN_LEECH':
+      return { ...state, leeches: [...state.leeches, action.leech] };
+
+    case 'POP_LEECH': {
+      const leech = state.leeches.find(l => l.id === action.leechId);
+      if (!leech) return state;
+      const payout = leech.absorbed * 1.1;
+      return {
+        ...state,
+        leeches: state.leeches.filter(l => l.id !== action.leechId),
+        doe: state.doe + payout,
+        totalDoeEver: state.totalDoeEver + payout,
+        totalDoeAllTime: state.totalDoeAllTime + payout,
+      };
+    }
+
+    case 'CATCH_NULL_FRACTURE': {
+      const now = Date.now();
+      const buff: ActiveBuff = action.bonus
+        ? { id: Math.random().toString(36).slice(2), label: 'NULL WINDFALL ×15', type: 'windfall', dpsMultiplier: 15, expiresAt: now + 30_000 }
+        : { id: Math.random().toString(36).slice(2), label: 'VOID DRAIN −50%', type: 'null-drain', dpsMultiplier: 0.5, expiresAt: now + 15_000 };
+      const filtered = state.activeBuffs.filter(b => b.type !== buff.type);
+      return { ...state, activeBuffs: [...filtered, buff] };
     }
 
     case 'BUY_CONDUIT': {
@@ -235,8 +295,14 @@ export function gameReducer(state: GameState, action: GameAction): GameState {
       };
     }
 
-    case 'LOAD_STATE':
-      return action.state;
+    case 'LOAD_STATE': {
+      const now = Date.now();
+      return {
+        ...action.state,
+        activeBuffs: (action.state.activeBuffs || []).filter((b: ActiveBuff) => b.expiresAt > now),
+        leeches: action.state.leeches || [],
+      };
+    }
 
     case 'RESET':
       return { ...INITIAL_STATE };

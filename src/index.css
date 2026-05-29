@@ -567,3 +567,23 @@ body::after {
   color: #000;
   box-shadow: 0 0 24px rgba(255,255,255,0.65);
 }
+
+@keyframes ticker-scroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-100%); }
+}
+
+@keyframes drain-bar {
+  from { transform: scaleX(1); }
+  to   { transform: scaleX(0); }
+}
+
+@keyframes resonance-pulse {
+  0%, 100% { opacity: 0.85; }
+  50%       { opacity: 1; }
+}
+
+@keyframes leech-pulse {
+  0%, 100% { transform: scale(1);    box-shadow: 0 0 10px rgba(140,0,200,0.5); }
+  50%       { transform: scale(1.18); box-shadow: 0 0 16px rgba(180,0,255,0.7); }
+}
